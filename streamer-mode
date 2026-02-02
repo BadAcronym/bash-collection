@@ -1,10 +1,9 @@
 #!/bin/bash
 
 pushd ~/.config/nitrogen/ > /dev/null
+dir="$HOME/.config/nitrogen_backup/"
 
 nitrogen-profile clean
-
-dir="$HOME/.config/nitrogen_backup/"
 
 if [[ ! -d $dir ]]
 then
@@ -13,9 +12,35 @@ fi
 
 for config in profile*
 do
+    if [[ ! -f $config ]]
+    then
+        continue;
+    fi
+
     mv $config $dir
 done
 
+pushd ~/.config/fastfetch/ > /dev/null
+dir="$HOME/.config/fastfetch_backup/"
+
 fastfetchconfig default > /dev/null
 
+if [[ ! -d $dir ]]
+then
+    mkdir $dir > /dev/null
+fi
+
+for config in *.jsonc
+do
+    if [[ ! -f $config ]]
+    then
+        continue;
+    fi
+
+    mv $config $dir
+done
+
+rm ~/.bash_history > /dev/null
+
+popd > /dev/null
 popd > /dev/null

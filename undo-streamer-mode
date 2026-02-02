@@ -1,16 +1,38 @@
 #!/bin/bash
 
 pushd ~/.config/nitrogen_backup/ > /dev/null
-
 dir="$HOME/.config/nitrogen/"
 
 for config in profile*
 do
+    if [[ ! -f $config ]]
+    then
+        continue;
+    fi
+
     mv $config $dir
 done
 
-popd > /dev/null
+pushd ~/.config/fastfetch_backup/ > /dev/null
+dir="$HOME/.config/fastfetch/"
+
+for config in *.jsonc
+do
+    if [[ ! -f $config ]]
+    then
+        continue;
+    fi
+
+    mv $config $dir
+done
 
 num=$(shuf -i 0-15 -n 1)
 nitrogen-profile $num
-fastfetchconfig v2
+
+ffconf=$(ls "$HOME/.config/fastfetch/" | shuf -n 1)
+
+cp $dir/$ffconf $dir/config.jsonc
+fastfetch
+
+popd > /dev/null
+popd > /dev/null
