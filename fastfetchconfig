@@ -1,0 +1,29 @@
+#!/bin/bash
+
+configFolder="$HOME/.config/fastfetch/"
+configFolder=$(realpath $configFolder)
+
+#WIP: actually do stuff besides listing
+#   edit   -name-
+#   delete -name-
+#   save   -name-
+
+if [[ $1 = "list" ]]
+then
+    for name in $(find $configFolder)
+    do
+        name="${name##*/}"
+        echo "${name%.jsonc}"
+    done
+elif [[ $1 = "edit" ]]
+then
+    echo "edit $2"
+elif [[ $1 = "delete" ]]
+then
+    echo "delete $2"
+elif [[ $1 = "save" ]]
+then
+    echo "save $2"
+else
+    fastfetch
+fi
