@@ -40,6 +40,25 @@ popd > /dev/null
 
 nitrogen-profile random
 
+pushd ~/.config/fastfetch/ > /dev/null
+dir="$HOME/.config/fastfetch_backup/"
+
+if [[ ! -d $dir ]]
+then
+    mkdir $dir > /dev/null
+fi
+
+for config in *.jsonc
+do
+    if [[ ! -f $config ]] || [[ $config = "config.jsonc" ]]
+    then
+        continue;
+    fi
+
+    mv $config $dir
+done
+popd > /dev/null
+
 pushd ~/.config/fastfetch_backup_/ > /dev/null
 dir="$HOME/.config/fastfetch/"
 
@@ -59,25 +78,6 @@ do
 done
 popd > /dev/null
 
-pushd ~/.config/fastfetch/ > /dev/null
-dir="$HOME/.config/fastfetch_backup/"
-
 fastfetchconfig random > /dev/null
-
-if [[ ! -d $dir ]]
-then
-    mkdir $dir > /dev/null
-fi
-
-for config in *.jsonc
-do
-    if [[ ! -f $config ]] || [[ $config = "config.jsonc" ]]
-    then
-        continue;
-    fi
-
-    mv $config $dir
-done
-popd > /dev/null
 
 rm ~/.bash_history > /dev/null
