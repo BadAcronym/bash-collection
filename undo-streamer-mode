@@ -1,5 +1,11 @@
 #!/bin/bash
 
+if [[ ! "$(ls -A $HOME/.config/nitrogen_backup/)" ]] && [[ ! "$(ls -A $HOME/.config/fastfetch_backup/)" ]]
+then
+    echo -e "no need, already undone streamer mode."
+    exit 0;
+fi
+
 read -p "ARE YOU SURE YOU WANT TO TURN OFF STREAMER MODE? (y/N): " -r
 
 echo

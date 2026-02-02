@@ -1,5 +1,11 @@
 #!/bin/bash
 
+if [[ ! "$(ls -A $HOME/.config/nitrogen_backup_/)" ]] && [[ ! "$(ls -A $HOME/.config/fastfetch_backup_/)" ]]
+then
+    echo -e "no need, already in streamer mode."
+    exit 0;
+fi
+
 pushd ~/.config/nitrogen/ > /dev/null
 dir="$HOME/.config/nitrogen_backup/"
 
