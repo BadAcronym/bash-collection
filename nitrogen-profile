@@ -10,6 +10,6 @@ fi
 pushd "$HOME/.config/nitrogen"
 
 cp $theme bg-saved.cfg
-nitrogen --restore
+nitrogen --restore 2> /dev/null
 
 popd > /dev/null
