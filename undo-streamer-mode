@@ -6,6 +6,25 @@ echo
 
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
+    pushd ~/.config/nitrogen/ > /dev/null
+    dir="$HOME/.config/nitrogen_backup_/"
+
+    if [[ ! -d $dir ]]
+    then
+        mkdir $dir > /dev/null
+    fi
+
+    for config in profile*
+    do
+        if [[ ! -f $config ]]
+        then
+            continue;
+        fi
+
+        mv $config $dir
+    done
+    popd > dev/null
+
     pushd ~/.config/nitrogen_backup/ > /dev/null
     dir="$HOME/.config/nitrogen/"
 
@@ -20,6 +39,25 @@ then
     done
 
     nitrogen-profile random
+
+    pushd ~/.config/fastfetch/ > /dev/null
+    dir="$HOME/.config/fastfetch_backup_/"
+
+    if [[ ! -d $dir ]]
+    then
+        mkdir $dir > /dev/null
+    fi
+
+    for config in *.jsonc
+    do
+        if [[ ! -f $config ]] || [[ $config = "config.jsonc" ]]
+        then
+            continue;
+        fi
+
+        mv $config $dir
+    done
+    popd > dev/null
 
     pushd ~/.config/fastfetch_backup/ > /dev/null
     dir="$HOME/.config/fastfetch/"
@@ -36,7 +74,6 @@ then
 
     fastfetchconfig random
 
-    popd > /dev/null
     popd > /dev/null
 
 else
