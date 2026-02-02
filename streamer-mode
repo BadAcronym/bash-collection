@@ -1,0 +1,21 @@
+#!/bin/bash
+
+pushd ~/.config/nitrogen/ > /dev/null
+
+nitrogen-profile clean
+
+dir="$HOME/.config/nitrogen_backup/"
+
+if [[ ! -d $dir ]]
+then
+    mkdir $dir > /dev/null
+fi
+
+for config in profile*
+do
+    mv $config $dir
+done
+
+fastfetchconfig default > /dev/null
+
+popd > /dev/null

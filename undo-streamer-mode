@@ -1,0 +1,16 @@
+#!/bin/bash
+
+pushd ~/.config/nitrogen_backup/ > /dev/null
+
+dir="$HOME/.config/nitrogen/"
+
+for config in profile*
+do
+    echo $config
+    cp $config $dir
+done
+
+popd > /dev/null
+
+num=$(shuf -i 0-15 -n 1)
+nitrogen-profile $num
