@@ -3,13 +3,9 @@
 configFolder="$HOME/.config/fastfetch/"
 configFolder=$(realpath $configFolder)
 
-#WIP: finish these
-#   delete -name-
-#   save   -name-
-
 if [[ $1 = "list" ]]
 then
-    for name in $(find $configFolder)
+    for name in $(ls $configFolder -I config.jsonc)
     do
         name="${name##*/}"
         echo "${name%.jsonc}"
@@ -61,7 +57,7 @@ else
 
         if [[ $1 = "random" ]]
         then
-            ffconf=$(ls "$HOME/.config/fastfetch/" -I config.jsonc -I default.jsonc | shuf -n 1)
+            ffconf=$(ls "$HOME/.config/fastfetch/" -I config.jsonc | shuf -n 1)
         else
             if [[ -f $1.jsonc ]]
             then
