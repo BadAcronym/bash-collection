@@ -1,0 +1,21 @@
+#!/bin/bash
+
+if [[ $1 = 'clean' ]]
+then
+    for vid in *mp4
+    do
+        if [[ -f "${vid%.mp4}.flac" ]]
+        then
+            echo "cleaning ${vid%.mp4}.flac"
+            rm "${vid%.mp4}.flac"
+        fi
+    done
+    echo "all clean!"
+
+else
+    for vid in *mp4
+    do
+        echo "extracting audio from $vid..."
+        ffmpeg -i $vid -vn -map 0:a -c:a flac ${vid%.mp4}.flac
+    done
+fi
