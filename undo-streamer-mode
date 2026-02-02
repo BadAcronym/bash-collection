@@ -6,8 +6,7 @@ dir="$HOME/.config/nitrogen/"
 
 for config in profile*
 do
-    echo $config
-    cp $config $dir
+    mv $config $dir
 done
 
 popd > /dev/null
