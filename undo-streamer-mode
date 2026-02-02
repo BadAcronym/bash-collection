@@ -1,40 +1,50 @@
 #!/bin/bash
 
-pushd ~/.config/nitrogen_backup/ > /dev/null
-dir="$HOME/.config/nitrogen/"
+read -p "ARE YOU SURE YOU WANT TO TURN OFF STREAMER MODE? (y/N): " -r
 
-for config in profile*
-do
-    if [[ ! -f $config ]]
-    then
-        continue;
-    fi
+echo
 
-    mv $config $dir
-done
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+    pushd ~/.config/nitrogen_backup/ > /dev/null
+    dir="$HOME/.config/nitrogen/"
 
-niconf=$(ls "$HOME/.config/nitrogen/" -I *clean.cfg -I *saved.cfg -I nitrogen.cfg | shuf -n 1)
-cp $dir/$niconf $dir/bg-saved.cfg
-nitrogen --restore 2> /dev/null
+    for config in profile*
+    do
+        if [[ ! -f $config ]]
+        then
+            continue;
+        fi
 
-pushd ~/.config/fastfetch_backup/ > /dev/null
-dir="$HOME/.config/fastfetch/"
+        mv $config $dir
+    done
 
-for config in *.jsonc
-do
-    if [[ ! -f $config ]]
-    then
-        continue;
-    fi
+    niconf=$(ls "$HOME/.config/nitrogen/" -I *clean.cfg -I *saved.cfg -I nitrogen.cfg | shuf -n 1)
+    cp $dir/$niconf $dir/bg-saved.cfg
+    nitrogen --restore 2> /dev/null
 
-    mv $config $dir
-done
+    pushd ~/.config/fastfetch_backup/ > /dev/null
+    dir="$HOME/.config/fastfetch/"
 
-ffconf=$(ls "$HOME/.config/fastfetch/" -I config.jsonc -I default.jsonc | shuf -n 1)
+    for config in *.jsonc
+    do
+        if [[ ! -f $config ]]
+        then
+            continue;
+        fi
 
-cp $dir/$ffconf $dir/config.jsonc
-clear
-fastfetch
+        mv $config $dir
+    done
 
-popd > /dev/null
-popd > /dev/null
+    ffconf=$(ls "$HOME/.config/fastfetch/" -I config.jsonc -I default.jsonc | shuf -n 1)
+
+    cp $dir/$ffconf $dir/config.jsonc
+    clear
+    fastfetch
+
+    popd > /dev/null
+    popd > /dev/null
+
+else
+    exit 1
+fi
