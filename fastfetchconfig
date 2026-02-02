@@ -28,17 +28,35 @@ then
 
 elif [[ $1 = "delete" ]]
 then
-    echo "TODO:"
-    echo "removed $2.jsonc."
+    pushd $configFolder > /dev/null
+    if [[ -f $2.jsonc ]]
+    then
+        rm $2.jsonc
+        echo "deleted configuration '$2.jsonc'."
+    else
+        echo "NOTE: configuration named '$2' does not exist."
+    fi
+    popd > /dev/null
 
 elif [[ $1 = "save" ]]
 then
-    echo "TODO:"
+    pushd $configFolder > /dev/null
+    cp "config.jsonc" $2.jsonc
     echo "saved current config as $2.jsonc."
+    popd > /dev/null
 
 else
-    #TODO: test if path actually exists
-    pushd $configFolder
-    cp "$1.jsonc" "config.jsonc"
+    if [[ $1 != '' ]]
+    then
+        pushd $configFolder > /dev/null
+        if [[ -f $1.jsonc ]]
+        then
+            cp "$1.jsonc" "config.jsonc"
+        else
+            echo "NOTE: configuration named '$1' does not exist."
+        fi
+        popd > /dev/null
+    fi
+
     fastfetch
 fi
