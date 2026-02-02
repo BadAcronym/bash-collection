@@ -7,7 +7,7 @@ else
     theme="$HOME/.config/nitrogen/profile-$1.cfg"
 fi
 
-pushd "$HOME/.config/nitrogen"
+pushd $HOME/.config/nitrogen > /dev/null
 
 cp $theme bg-saved.cfg
 nitrogen --restore 2> /dev/null
