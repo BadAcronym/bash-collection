@@ -58,12 +58,20 @@ else
     if [[ $1 != '' ]]
     then
         pushd $configFolder > /dev/null
-        if [[ -f $1.jsonc ]]
+
+        if [[ $1 = "random" ]]
         then
-            cp "$1.jsonc" "config.jsonc"
+            ffconf=$(ls "$HOME/.config/fastfetch/" -I config.jsonc -I default.jsonc | shuf -n 1)
         else
-            echo "NOTE: configuration named '$1' does not exist."
+            if [[ -f $1.jsonc ]]
+            then
+                ffconf="$1.jsonc"
+            else
+                echo "NOTE: configuration named '$1' does not exist."
+            fi
         fi
+
+        cp $ffconf "config.jsonc"
         popd > /dev/null
     fi
 
