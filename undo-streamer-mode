@@ -13,6 +13,10 @@ do
     mv $config $dir
 done
 
+niconf=$(ls "$HOME/.config/nitrogen/" -I *clean.cfg -I *saved.cfg -I nitrogen.cfg | shuf -n 1)
+cp $dir/$niconf $dir/bg-saved.cfg
+nitrogen --restore
+
 pushd ~/.config/fastfetch_backup/ > /dev/null
 dir="$HOME/.config/fastfetch/"
 
@@ -26,10 +30,7 @@ do
     mv $config $dir
 done
 
-num=$(shuf -i 0-15 -n 1)
-nitrogen-profile $num
-
-ffconf=$(ls "$HOME/.config/fastfetch/" | shuf -n 1)
+ffconf=$(ls "$HOME/.config/fastfetch/" -I config.jsonc -I default.jsonc | shuf -n 1)
 
 cp $dir/$ffconf $dir/config.jsonc
 fastfetch
