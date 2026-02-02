@@ -1,0 +1,89 @@
+#!/bin/bash
+
+mkdir $HOME/smb/Backups/nitrogen/ 2> /dev/null
+echo -e "\n\033[1;35mbacking up nitrogen configs...\033[0m\n"
+
+pushd $HOME/.config/nitrogen/ > /dev/null
+for config in profile*
+do
+    if [[ ! -f $config ]]
+    then
+        continue;
+    fi
+
+    echo "backing up $(basename $config)..."
+    cp $config $HOME/smb/Backups/nitrogen/$(basename $config)
+done
+
+pushd $HOME/.config/nitrogen_backup/ > /dev/null
+for config in profile*
+do
+    if [[ ! -f $config ]]
+    then
+        continue;
+    fi
+
+    echo "backing up $(basename $config)..."
+    cp $config $HOME/smb/Backups/nitrogen/$(basename $config)
+done
+
+pushd $HOME/.config/nitrogen_backup_/ > /dev/null
+for config in profile*
+do
+    if [[ ! -f $config ]]
+    then
+        continue;
+    fi
+
+    echo "backing up $(basename $config)..."
+    cp $config $HOME/smb/Backups/nitrogen/$(basename $config)
+done
+
+popd > /dev/null
+popd > /dev/null
+popd > /dev/null
+
+mkdir $HOME/smb/Backups/fastfetch/ 2> /dev/null
+echo -e "\n\033[1;35mbacking up fastfetch configs...\033[0m\n"
+
+pushd $HOME/.config/fastfetch/ > /dev/null
+for config in *.jsonc
+do
+    if [[ ! -f $config ]] || [[ $config = "config.jsonc" ]]
+    then
+        continue;
+    fi
+
+    echo "backing up $(basename $config)..."
+    cp $config $HOME/smb/Backups/fastfetch/$(basename $config)
+done
+
+pushd $HOME/.config/fastfetch_backup/ > /dev/null
+for config in *.jsonc
+do
+    if [[ ! -f $config ]] || [[ $config = "config.jsonc" ]]
+    then
+        continue;
+    fi
+
+    echo "backing up $(basename $config)..."
+    cp $config $HOME/smb/Backups/fastfetch/$(basename $config)
+done
+
+pushd $HOME/.config/fastfetch_backup_/ > /dev/null
+for config in *.jsonc
+do
+    if [[ ! -f $config ]] || [[ $config = "config.jsonc" ]]
+    then
+        continue;
+    fi
+
+    echo "backing up $(basename $config)..."
+    cp $config $HOME/smb/Backups/fastfetch/$(basename $config)
+done
+
+popd > /dev/null
+popd > /dev/null
+popd > /dev/null
+
+echo -e "\n\033[1;32mall done!\033[0m\n"
