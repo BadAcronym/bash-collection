@@ -13,3 +13,4 @@ popd > /dev/null
 
 num=$(shuf -i 0-15 -n 1)
 nitrogen-profile $num
+fastfetchconfig v2
