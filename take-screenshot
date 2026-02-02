@@ -1,4 +1,9 @@
 #!/bin/bash
 
-# maim ~/Pictures/screens/(date +%s).png -s
-maim -s | xclip -selection clipboard -t image/png
+maim -s /tmp/screenshot.png
+xclip -selection clipboard -t image/png < /tmp/screenshot.png
+
+magick /tmp/screenshot.png /tmp/screenshot.jpg
+
+rm /tmp/screenshot.png
+mv /tmp/screenshot.jpg ~/Pictures/screens/$(date +%s).jpg
