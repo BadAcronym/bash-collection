@@ -23,7 +23,7 @@ then
 
         mv $config $dir
     done
-    popd > dev/null
+    popd > /dev/null
 
     pushd ~/.config/nitrogen_backup/ > /dev/null
     dir="$HOME/.config/nitrogen/"
@@ -57,7 +57,7 @@ then
 
         mv $config $dir
     done
-    popd > dev/null
+    popd > /dev/null
 
     pushd ~/.config/fastfetch_backup/ > /dev/null
     dir="$HOME/.config/fastfetch/"
