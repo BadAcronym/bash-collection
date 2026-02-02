@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cp ~/.config/nitrogen/profile-$1.cfg ~/.config/nitrogen/bg-saved.cfg
+nitrogen --restore
