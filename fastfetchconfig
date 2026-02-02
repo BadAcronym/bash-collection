@@ -3,8 +3,7 @@
 configFolder="$HOME/.config/fastfetch/"
 configFolder=$(realpath $configFolder)
 
-#WIP: actually do stuff besides listing
-#   edit   -name-
+#WIP: finish these
 #   delete -name-
 #   save   -name-
 
@@ -15,15 +14,31 @@ then
         name="${name##*/}"
         echo "${name%.jsonc}"
     done
+
 elif [[ $1 = "edit" ]]
 then
-    echo "edit $2"
+    if [[ $2 = '' ]]
+    then
+        echo "editing current configuration..."
+        nvim "$configFolder/config.jsonc"
+    else
+        echo "editing '$2'"
+        nvim "$configFolder/$2.jsonc"
+    fi
+
 elif [[ $1 = "delete" ]]
 then
-    echo "delete $2"
+    echo "TODO:"
+    echo "removed $2.jsonc."
+
 elif [[ $1 = "save" ]]
 then
-    echo "save $2"
+    echo "TODO:"
+    echo "saved current config as $2.jsonc."
+
 else
+    #TODO: test if path actually exists
+    pushd $configFolder
+    cp "$1.jsonc" "config.jsonc"
     fastfetch
 fi
