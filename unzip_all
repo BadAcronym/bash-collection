@@ -8,7 +8,20 @@ do
     if [[ $? != 0 ]]
     then
         echo -e "Error while extracting $archive."
-        exit -1;
+    fi
+
+    echo -e "removing source file: $archive\n"
+    rm "${archive}"
+done
+
+for archive in *7z
+do
+    echo -e "extracting $archive..."
+    7z x -y "${archive}"
+
+    if [[ $? != 0 ]]
+    then
+        echo -e "Error while extracting $archive."
     fi
 
     echo -e "removing source file: $archive\n"
@@ -23,7 +36,6 @@ do
     if [[ $? != 0 ]]
     then
         echo -e "Error while extracting $archive."
-        exit -1;
     fi
 
     echo -e "removing source file: $archive\n"
