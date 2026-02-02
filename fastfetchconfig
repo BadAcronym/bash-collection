@@ -29,6 +29,7 @@ then
 elif [[ $1 = "delete" ]]
 then
     pushd $configFolder > /dev/null
+
     if [[ -f $2.jsonc ]]
     then
         rm $2.jsonc
@@ -36,13 +37,21 @@ then
     else
         echo "NOTE: configuration named '$2' does not exist."
     fi
+
     popd > /dev/null
 
 elif [[ $1 = "save" ]]
 then
     pushd $configFolder > /dev/null
-    cp "config.jsonc" $2.jsonc
-    echo "saved current config as $2.jsonc."
+
+    if [[ $2 = "" ]]
+    then
+        echo "can't save to a theme with no name."
+    else
+        cp "config.jsonc" $2.jsonc
+        echo "saved current config as $2.jsonc."
+    fi
+
     popd > /dev/null
 
 else
