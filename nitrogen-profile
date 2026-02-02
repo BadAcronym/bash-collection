@@ -4,7 +4,7 @@ if [[ $1 = "random" ]]
 then
     theme=$(ls "$HOME/.config/nitrogen/" -I bg-saved.cfg -I nitrogen.cfg | shuf -n 1)
 else
-    theme="$HOME/.config/nitrogen/profile-$1.cfg"
+    theme="$HOME/.config/nitrogen/profile-$1"
 fi
 
 pushd $HOME/.config/nitrogen > /dev/null
