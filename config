@@ -1,0 +1,38 @@
+#!/bin/bash
+
+function config_setup()
+{
+    # TODO: assume I'm setting up an arch machine
+    echo "initiating full setup..."
+}
+
+function config_pull()
+{
+    echo "pulling configs from ~/repository/dotfiles..."
+    # TODO: pull every relevant config from the repo,
+    # keep track of how many files were updated,
+    # give summary of which
+}
+
+function config_push()
+{
+    echo "pushing configs to ~/repository/dotfiles..."
+    # TODO: push every relevant config to the repo,
+    # keep track of how many files were updated,
+    # prompt to pushd into dotfiles and lazygit
+}
+
+if [[ $1 = "setup" ]]; then
+    config_setup
+    config_pull
+
+else if [[ $1 = "pull" ]]; then
+    config_pull
+
+else if [[ $1 = "push" ]]; then
+    config_push
+else
+    echo "no operation selected."
+fi
+fi
+fi
