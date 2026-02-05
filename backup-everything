@@ -1,7 +1,10 @@
 #!/bin/bash
 
+nitrogen_count=0
+fastfetch_count=0
+
 mkdir $HOME/smb/Backups/nitrogen/ 2> /dev/null
-echo -e "\n\033[1;35mbacking up nitrogen configs...\033[0m\n"
+echo -e "\n\033[1;35mbacking up nitrogen configs...\033[0m"
 
 pushd $HOME/.config/nitrogen/ > /dev/null
 for config in profile*
@@ -11,7 +14,7 @@ do
         continue;
     fi
 
-    echo "backing up $(basename $config)..."
+    nitrogen_count=$((nitrogen_count+1))
     cp $config $HOME/smb/Backups/nitrogen/$(basename $config)
 done
 
@@ -23,7 +26,7 @@ do
         continue;
     fi
 
-    echo "backing up $(basename $config)..."
+    nitrogen_count=$((nitrogen_count+1))
     cp $config $HOME/smb/Backups/nitrogen/$(basename $config)
 done
 
@@ -35,16 +38,18 @@ do
         continue;
     fi
 
-    echo "backing up $(basename $config)..."
+    nitrogen_count=$((nitrogen_count+1))
     cp $config $HOME/smb/Backups/nitrogen/$(basename $config)
 done
+
+echo -e "backed up $nitrogen_count nitrogen configs."
 
 popd > /dev/null
 popd > /dev/null
 popd > /dev/null
 
 mkdir $HOME/smb/Backups/fastfetch/ 2> /dev/null
-echo -e "\n\033[1;35mbacking up fastfetch configs...\033[0m\n"
+echo -e "\n\033[1;35mbacking up fastfetch configs...\033[0m"
 
 pushd $HOME/.config/fastfetch/ > /dev/null
 for config in *.jsonc
@@ -54,7 +59,7 @@ do
         continue;
     fi
 
-    echo "backing up $(basename $config)..."
+    fastfetch_count=$((fastfetch_count+1))
     cp $config $HOME/smb/Backups/fastfetch/$(basename $config)
 done
 
@@ -66,7 +71,7 @@ do
         continue;
     fi
 
-    echo "backing up $(basename $config)..."
+    fastfetch_count=$((fastfetch_count+1))
     cp $config $HOME/smb/Backups/fastfetch/$(basename $config)
 done
 
@@ -78,9 +83,11 @@ do
         continue;
     fi
 
-    echo "backing up $(basename $config)..."
+    fastfetch_count=$((fastfetch_count+1))
     cp $config $HOME/smb/Backups/fastfetch/$(basename $config)
 done
+
+echo -e "backed up $fastfetch_count fastfetch configs."
 
 popd > /dev/null
 popd > /dev/null
