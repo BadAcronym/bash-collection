@@ -93,4 +93,158 @@ popd > /dev/null
 popd > /dev/null
 popd > /dev/null
 
+echo -e "\n\033[1;35mbacking up configuration files...\033[0m"
+
+boomer=$HOME/.config/boomer/config
+if [[ -f $boomer ]]
+then
+    cp $boomer $HOME/repository/dotfiles/boomer/config
+    echo -e "backed up $boomer."
+else
+    echo -e "WARN: no config found in $boomer."
+fi
+
+i3=$HOME/.config/i3/config
+if [[ -f $i3 ]]
+then
+    cp $i3 $HOME/repository/dotfiles/i3/i3/config
+    echo -e "backed up $i3."
+else
+    echo -e "WARN: no config found in $i3."
+fi
+
+i3status=$HOME/.config/i3status/config
+if [[ -f $i3status ]]
+then
+    cp $i3status $HOME/repository/dotfiles/i3/i3status/config
+    echo -e "backed up $i3status."
+else
+    echo -e "WARN: no config found in $i3status."
+fi
+
+mangohudcustom=$HOME/.config/MangoHud/custom.conf
+if [[ -f $mangohudcustom ]]
+then
+    cp $mangohudcustom $HOME/repository/dotfiles/MangoHud/custom.conf
+    echo -e "backed up $mangohudcustom."
+else
+    echo -e "WARN: no config found in $mangohudcustom."
+fi
+
+mangohuddefault=$HOME/.config/MangoHud/MangoHud.conf
+if [[ -f $mangohuddefault ]]
+then
+    cp $mangohuddefault $HOME/repository/dotfiles/MangoHud/MangoHud.conf
+    echo -e "backed up $mangohuddefault."
+else
+    echo -e "WARN: no config found in $mangohuddefault."
+fi
+
+mpv=$HOME/.config/mpv/mpv.conf
+if [[ -f $mpv ]]
+then
+    cp $mpv $HOME/repository/dotfiles/mpv/mpv.conf
+    echo -e "backed up $mpv."
+else
+    echo -e "WARN: no config found in $mpv."
+fi
+
+nviminit=$HOME/.config/nvim/init.lua
+if [[ -f $nviminit ]]
+then
+    cp $nviminit $HOME/repository/dotfiles/nvim/init.lua
+    echo -e "backed up $nviminit."
+else
+    echo -e "WARN: no config found in $nviminit."
+fi
+
+nvimoptions=$HOME/.config/nvim/lua/nvimoptions.lua
+if [[ -f $nvimoptions ]]
+then
+    cp $nvimoptions $HOME/repository/dotfiles/nvim/lua/nvimoptions.lua
+    echo -e "backed up $nvimoptions."
+else
+    echo -e "WARN: no config found in $nvimoptions."
+fi
+
+lspconfig=$HOME/.config/nvim/lua/lspconfig.lua
+if [[ -f $lspconfig ]]
+then
+    cp $lspconfig $HOME/repository/dotfiles/nvim/lua/lspconfig.lua
+    echo -e "backed up $lspconfig."
+else
+    echo -e "WARN: no config found in $lspconfig."
+fi
+
+pushd "$HOME/.config/nvim/lua/plugins" > /dev/null
+
+for plugin in *.lua
+do
+    if [[ ! -f $plugin ]]
+    then
+        echo -e "WARN: no configs found in $(pwd)."
+    fi
+
+    cp $plugin $HOME/repository/dotfiles/nvim/lua/plugins/
+    echo -e "backed up $HOME/.config/nvim/lua/plugins/$plugin."
+done
+
+popd > /dev/null
+
+picom=$HOME/.config/picom/picom.conf
+if [[ -f $picom ]]
+then
+    cp $picom $HOME/repository/dotfiles/picom/picom.conf
+    echo -e "backed up $picom."
+else
+    echo -e "WARN: no config found in $picom."
+fi
+
+wezterm=$HOME/.config/wezterm/wezterm.lua
+if [[ -f $wezterm ]]
+then
+    cp $wezterm $HOME/repository/dotfiles/wezterm/wezterm.lua
+    echo -e "backed up $wezterm."
+else
+    echo -e "WARN: no config found in $wezterm."
+fi
+
+bashrc=$HOME/.bashrc
+if [[ -f $bashrc ]]
+then
+    cp $bashrc $HOME/repository/dotfiles/x11/.bashrc
+    echo -e "backed up $bashrc."
+else
+    echo -e "WARN: no config found in $bashrc."
+fi
+
+bashprofile=$HOME/.bash_profile
+if [[ -f $bashprofile ]]
+then
+    cp $bashprofile $HOME/repository/dotfiles/x11/.bash_profile
+    echo -e "backed up $bashprofile."
+else
+    echo -e "WARN: no config found in $bashprofile."
+fi
+
+xinitrc=$HOME/.xinitrc
+if [[ -f $xinitrc ]]
+then
+    cp $xinitrc $HOME/repository/dotfiles/x11/.xinitrc
+    echo -e "backed up $xinitrc."
+else
+    echo -e "WARN: no config found in $xinitrc."
+fi
+
+xresources=$HOME/.Xresources
+if [[ -f $xresources ]]
+then
+    cp $xresources $HOME/repository/dotfiles/x11/.Xresources
+    echo -e "backed up $xresources."
+else
+    echo -e "WARN: no config found in $xresources."
+fi
+
+# TODO: display lazygit if there is a diff
+
 echo -e "\n\033[1;32mall done!\033[0m\n"
