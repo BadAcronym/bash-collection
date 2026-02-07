@@ -1,13 +1,23 @@
 #!/bin/bash
 
+pushd $HOME/.config/nitrogen > /dev/null
+
 if [[ $1 = "random" ]]
 then
-    theme=$(ls "$HOME/.config/nitrogen/" -I bg-saved.cfg -I nitrogen.cfg | shuf -n 1)
+    theme=$(ls -I bg-saved.cfg -I nitrogen.cfg | shuf -n 1)
 else
-    theme="$HOME/.config/nitrogen/profile-$1"
+if [[ $1 = "list" ]]
+then
+    for name in $(ls -I bg-saved.cfg -I nitrogen.cfg)
+    do
+        echo "${name#profile-}"
+    done
+    popd > /dev/null
+    exit 0;
+else
+    theme="profile-$1"
 fi
-
-pushd $HOME/.config/nitrogen > /dev/null
+fi
 
 cp $theme bg-saved.cfg
 nitrogen --restore 2> /dev/null
