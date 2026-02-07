@@ -1,22 +1,40 @@
 #!/bin/bash
 
+pkglist="           \
+cloc                \
+picom               \
+lazygit             \
+librewolf-bin       \
+wezterm-nightly-bin \
+"
+
 function config_setup()
 {
     # TODO: assume I'm setting up an arch machine
-    echo "initiating full setup..."
+    echo -e "\n\033[1;35minitiating full setup.\033[0m"
+    echo -e "\ndownloading yay..."
+
+    # TODO: install yay
+
+    echo -e "\ndownloading full list of packages..."
+    yay -Sy $pkglist
+
+    # TODO: add all relevant packages here
+    echo -e "\n\033[1;32mall done!\033[0m\n"
 }
 
 function config_pull()
 {
-    echo "pulling configs from ~/repository/dotfiles..."
+    echo -e "\n\033[1;35mpulling config files.\033[0m"
     # TODO: pull every relevant config from the repo,
     # keep track of how many files were updated,
     # give summary of which
+    echo -e "\n\033[1;32mall done!\033[0m\n"
 }
 
 function config_push()
 {
-    echo -e "\n\033[1;35mbacking up.\033[0m"
+    echo -e "\n\033[1;35mpushing config files.\033[0m"
 
     mkdir $HOME/smb/Backups/nitrogen/ 2> /dev/null
     echo -e "\n\033[1;35mbacking up nitrogen configs...\033[0m"
@@ -257,6 +275,12 @@ function config_push()
     echo -e "\n\033[1;32mall done!\033[0m\n"
 }
 
+function config_clean
+{
+    yay -Sc
+    echo -e "\n\033[1;32mall done!\033[0m\n"
+}
+
 if [[ $1 = "setup" ]]; then
     config_setup
     config_pull
@@ -266,8 +290,13 @@ else if [[ $1 = "pull" ]]; then
 
 else if [[ $1 = "push" ]]; then
     config_push
+
+else if [[ $1 = "clean" ]]; then
+    config_clean
+
 else
     echo "no operation selected."
+fi
 fi
 fi
 fi
