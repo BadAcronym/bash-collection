@@ -16,10 +16,16 @@ then
     exit 0;
 else
     theme="profile-$1"
+
+    if [[ ! -f $theme ]]
+    then
+        echo -e "\n\033[31;1;1ma profile of name $theme does not exist.\033[0m\n"
+        popd > /dev/null
+        exit 1;
+    fi
 fi
 fi
 
 cp $theme bg-saved.cfg
 nitrogen --restore 2> /dev/null
-
 popd > /dev/null
