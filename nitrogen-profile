@@ -29,17 +29,35 @@ then
 else
     theme="profile-$1"
 
-    # TODO: choose a random number if there are many
     if [[ ! -f $theme ]] && [[ -f "$theme-0" ]]
     then
-        theme="$theme-0"
-    fi
+        count=0
 
-    if [[ ! -f $theme ]]
-    then
-        echo -e "\n\033[31;1;1ma profile of name $theme does not exist.\033[0m\n"
-        popd > /dev/null
-        exit 1;
+        for curr in $theme-*
+        do
+            if [[ $curr = "$theme-0" ]]
+            then
+                continue;
+            fi
+
+            count=$((count + 1))
+        done
+
+        if [[ $count = 0 ]]
+        then
+            theme="$theme-0"
+        else
+            final=$(seq $count | shuf -n 1)
+            theme="$theme-$final"
+        fi
+
+    else
+        if [[ ! -f $theme ]]
+        then
+            echo -e "\n\033[31;1;1ma profile of name $theme does not exist.\033[0m\n"
+            popd > /dev/null
+            exit 1;
+        fi
     fi
 fi
 fi
