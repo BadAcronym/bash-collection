@@ -1,0 +1,30 @@
+#!/bin/bash
+
+pushd $HOME/repository/ > /dev/null
+
+cloc                            \
+--exclude-lang=Markdown         \
+--exclude-ext=md                \
+imgsurf/src/                    \
+imgsurf/include/                \
+river2D/src/                    \
+river2D/include/                \
+River/src/                      \
+River/include/                  \
+river2D_mapedit/src/            \
+river2D_mapedit/include/        \
+islescape/src/                  \
+islescape/include/              \
+marino/src/                     \
+marino/include/                 \
+flushback/src/                  \
+flushback/include/              \
+bash-collection/                \
+PWSH-Collection/                \
+CPong/src/                      \
+CPong/include/                  \
+Snek/src/                       \
+Snek/include/                   \
+UNI/                            \
+
+popd > /dev/null
