@@ -35,21 +35,11 @@ else
 
         for curr in $theme-*
         do
-            if [[ $curr = "$theme-0" ]]
-            then
-                continue;
-            fi
-
             count=$((count + 1))
         done
 
-        if [[ $count = 0 ]]
-        then
-            theme="$theme-0"
-        else
-            final=$(seq $count | shuf -n 1)
-            theme="$theme-$final"
-        fi
+        final=$(seq $count | shuf -n 1)
+        theme="$theme-$((final - 1))"
 
     else
         if [[ ! -f $theme ]]
