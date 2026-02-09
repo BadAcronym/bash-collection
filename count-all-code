@@ -3,8 +3,6 @@
 pushd $HOME/repository/ > /dev/null
 
 cloc                            \
---exclude-lang=Markdown         \
---exclude-ext=md                \
 imgsurf/src/                    \
 imgsurf/include/                \
 river2D/src/                    \
