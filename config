@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # TODO: back up OBS settings & such
+# TODO: back up writings to smb!
 
 pkglist="           \
 cloc                \
