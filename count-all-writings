@@ -1,1 +1,19 @@
-#TODO: wordcount for each and every bit of writing I've done, including an estimate of pages in book format
+#!/bin/bash
+
+list=""
+
+pushd $HOME/writing/ > /dev/null
+for folder in *
+do
+    pushd $folder > /dev/null
+    for file in *typ
+    do
+        list="$list $HOME/writing/$folder/$file"
+    done
+    popd > /dev/null
+done
+popd > /dev/null
+
+wc $list -w
+
+#TODO: extract total wordcount and make estimates about how many pages that is
