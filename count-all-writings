@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# TODO: deal with whitespaces lol
+
 list=""
 
 pushd $HOME/writing/ > /dev/null
