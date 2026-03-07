@@ -1,0 +1,60 @@
+#!/bin/bash
+
+# TODO: for all .json in the current folder:
+# 1. merge (append) duplicate mods (0000_Frostfall.json & 0001_Frostfall.json)
+# 2. number everything correctly (from 0000 to max, no gaps)
+#   if 2 mods share the same number (0080_Frostfall.json & 0080_MARA.json), then increment one of them.
+# 3. only keep the last (winning) value of a field, not its change history.
+
+# BACKLOG: only keep the last (winning) value, not the entire history
+
+declare -A modmap
+
+mergecount=0
+uniquemods=0
+jsoncount=0
+
+for mcm in *.json
+do
+    index=${mcm:0:4}
+    modname=${mcm:4}
+
+    echo "$index$modname"
+
+    uniqueindex="$(printf "%04d" $uniquemods)"
+    if [[ $index != $uniqueindex ]]
+    then
+        echo -e "\033[33;1;3m$index$modname -> $uniqueindex$modname\033[0;0m"
+        mv "./$mcm" "./$uniqueindex$modname"
+    fi
+
+    if [[ ${modmap[$modname]} = "" ]]
+    then
+        modmap[$modname]=$uniqueindex
+        uniquemods="$(($uniquemods + 1))"
+    else
+        echo -e "\033[31;1;1mduplicate MCM: ${modname:1}, first index ${modmap[$modname]}\033[0;0m"
+
+        mod1="${modmap[$modname]}$modname"
+        mod2="$uniqueindex$modname"
+
+        jq -s '.[0] + .[1]' "$mod1" "$mod2" > "./temp"
+
+        mv "./temp" "./$mod1"
+        rm "./$mod2"
+
+        echo -e "\033[33;1;3mmerged $mod2 into $mod1!\033[0;0m"
+
+        mergecount="$(($mergecount + 1))"
+    fi
+
+    jsoncount="$(($jsoncount + 1))"
+done
+
+if [[ -f "./temp" ]]
+then
+    rm ./temp
+fi
+
+echo -e "\033[32;1;1mreduction: $jsoncount -> $uniquemods"
+echo -e "merged $mergecount files!\033[0;0m"
