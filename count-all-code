@@ -17,6 +17,8 @@ marino/src/                     \
 marino/include/                 \
 flushback/src/                  \
 flushback/include/              \
+gitfluss/src/                  \
+gitfluss/include/              \
 bash-collection/                \
 PWSH-Collection/                \
 CPong/src/                      \
