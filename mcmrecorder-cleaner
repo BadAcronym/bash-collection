@@ -40,15 +40,15 @@ do
 
         cp "$mod1" "./temp"
 
-        jq -s '.[0] + .[1]' "$mod1" "$mod2" > "$mod1"
+        jq -s '.[0] + .[1]' "./$mod1" "$mod2" > "./temp"
 
         if [[ $? != 0 ]]
         then
             echo -e "\033[31;1;1mERROR: jq failed.\033[0;0m"
-            mv "./temp" "$mod1"
             exit -1;
         fi
 
+        mv "./temp" "$mod1"
         rm "./$mod2"
         echo -e "\033[33;1;3mmerged $mod2 into $mod1!\033[0;0m"
 
