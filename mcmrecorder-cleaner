@@ -1,13 +1,5 @@
 #!/bin/bash
 
-# TODO: for all .json in the current folder:
-# 1. merge (append) duplicate mods (0000_Frostfall.json & 0001_Frostfall.json)
-# 2. number everything correctly (from 0000 to max, no gaps)
-#   if 2 mods share the same number (0080_Frostfall.json & 0080_MARA.json), then increment one of them.
-# 3. only keep the last (winning) value of a field, not its change history.
-
-# BACKLOG: only keep the last (winning) value, not the entire history
-
 declare -A modmap
 
 mergecount=0
