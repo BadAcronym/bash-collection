@@ -4,8 +4,8 @@ if [[ ! $(pgrep -f xidlehook) ]]
 then
     xidlehook --not-when-audio --not-when-fullscreen                                                                                                       \
         --timer 500 'xrandr --output DP-2 --brightness .5 --output HDMI-1 --brightness .5 --output HDMI-2 --brightness .5 --output DP-1 --brightness .5 '  \
-                    'xrandr --output DP-2 --brightness 1  --output HDMI-1 --brightness .8 --output HDMI-2 --brightness .8 --output DP-1 --brightness .8 '  \
+                    'xrandr --output DP-2 --brightness 1  --output HDMI-1 --brightness 1  --output HDMI-2 --brightness 1  --output DP-1 --brightness 1  '  \
         --timer 300 'xrandr --output DP-2 --brightness .1 --output HDMI-1 --brightness .1 --output HDMI-2 --brightness .1 --output DP-1 --brightness .1 '  \
-                    'xrandr --output DP-2 --brightness 1  --output HDMI-1 --brightness .8 --output HDMI-2 --brightness .8 --output DP-1 --brightness .8 '  \
+                    'xrandr --output DP-2 --brightness 1  --output HDMI-1 --brightness 1  --output HDMI-2 --brightness 1  --output DP-1 --brightness 1  '  \
         --timer 100 'systemctl sleep-then-hibernate' ''
 fi
