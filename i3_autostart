@@ -8,5 +8,6 @@ then
                     'xrandr --output DP-2 --brightness 1  --output HDMI-1 --brightness 1  --output HDMI-2 --brightness 1  --output DP-1 --brightness 1  '   \
         # --timer 100 'xrandr --output DP-2 --brightness 0  --output HDMI-1 --brightness 0  --output HDMI-2 --brightness 0  --output DP-1 --brightness 0  '   \
         #             'xrandr --output DP-2 --brightness 1  --output HDMI-1 --brightness 1  --output HDMI-2 --brightness 1  --output DP-1 --brightness 1  '   \
-        --timer 100 'systemctl sleep-then-hibernate' ''
+        # --timer 100 'systemctl sleep-then-hibernate' ''
+        --timer 100 'systemctl hibernate' ''
 fi
