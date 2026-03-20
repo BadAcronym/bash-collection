@@ -1,21 +1,37 @@
 #!/bin/bash
 
-# TODO: deal with whitespaces lol
-
 list=""
 
 pushd $HOME/writing/ > /dev/null
-for folder in *
-do
-    pushd $folder > /dev/null
-    for file in *typ
-    do
-        list="$list $HOME/writing/$folder/$file"
-    done
-    popd > /dev/null
-done
-popd > /dev/null
 
+function add_files()
+{
+    if [[ -f "$1" ]] && [[ "$1" =~ \.(typ|md|txt)$ ]]
+    then
+        list="$list $PWD/$1"
+    else
+        if [[ -d "$1" ]]
+        then
+            pushd "$1" > /dev/null
+
+            for item in *
+            do
+                add_files "$item"
+            done
+
+            popd > /dev/null
+        # else
+        #     echo "ERROR: item neither a directory or a file: $PWD/$1"
+        fi
+    fi
+}
+
+add_files "$HOME/writing/"
+
+echo -e "found files:\n"
 wc $list -w
+echo
+
+popd > /dev/null
 
 #TODO: extract total wordcount and make estimates about how many pages that is
