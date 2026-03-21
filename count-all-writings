@@ -57,6 +57,7 @@ echo "----------------------------------------------------"
 echo "$wordcount words in $filecount files."
 echo "$pages total pages in $books average-length novels."
 # TODO: take every file that's estimated to be above 100 pages, then list them below and say how many words, pages they would be!
+# something like "wälzer:", "romane:", "tageslektüre:" :))
 # echo "$largest words in the largest file."
 # echo "$largestpages pages in the largest file."
 echo "----------------------------------------------------"
