@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # TODO: back up OBS settings & such
-# TODO: back up writings to smb!
 
 pkglist="           \
 cloc                \
@@ -37,6 +36,9 @@ function config_pull()
 
 function config_push()
 {
+    echo -e "\n\033[1;35mbacking up writings...\033[0m"
+    cp "$HOME/writing/" "$HOME/smb/writing/" -r
+
     echo -e "\n\033[1;35mpushing config files.\033[0m"
 
     mkdir $HOME/smb/Backups/nitrogen/ 2> /dev/null
