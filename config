@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # TODO: back up OBS settings & such
+# TODO: don't back up writing's git directory, but every subfolder besides that. lol
 
 pkglist="           \
 cloc                \
@@ -37,7 +38,7 @@ function config_pull()
 function config_push()
 {
     echo -e "\n\033[1;35mbacking up writings...\033[0m"
-    cp "$HOME/writing/" "$HOME/smb/writing/" -r
+    cp "$HOME/writing/" "$HOME/smb/" -r
 
     echo -e "\n\033[1;35mpushing config files.\033[0m"
 
