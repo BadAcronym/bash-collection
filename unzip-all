@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# TODO: add tar.gz
+
 for archive in *zip
 do
     echo -e "extracting $archive..."
@@ -41,11 +43,3 @@ do
     echo -e "removing source file: $archive\n"
     rm "${archive}"
 done
-
-for codes in *txt
-do
-    echo -e "removing text file: $codes\n"
-    rm "${codes}"
-done
-
-# TODO: add gz and others
