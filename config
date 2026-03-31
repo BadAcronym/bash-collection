@@ -35,12 +35,36 @@ function config_pull()
     echo -e "\n\033[1;32mall done!\033[0m\n"
 }
 
+function move_to_smb_recurse()
+{
+    if [[ -f "$1" ]]
+    then
+        echo "$1"
+        #TODO: move file to smb path counterpart
+    else
+    if [[ -d "$1" ]]
+    then
+        pushd "$1" > /dev/null
+
+        for item in *
+        do
+            move_to_smb_recurse "$item"
+        done
+
+        popd > /dev/null
+    fi
+    fi
+}
+
 function config_push()
 {
     echo -e "\n\033[1;35mbacking up writings...\033[0m"
-    cp "$HOME/writing/" "$HOME/smb/" -r
 
     # TODO: back up only .typ / .txt / .md files, show each individually in output!
+    # instead of:
+    cp "$HOME/writing/" "$HOME/smb/" -r
+
+    move_to_smb_recurse "$HOME/writing/"
 
     echo -e "\n\033[1;35mpushing config files.\033[0m"
 
