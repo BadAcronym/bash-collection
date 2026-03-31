@@ -40,7 +40,7 @@ function move_to_smb_recurse()
     if [[ -f "$1" ]]
     then
         echo "$1"
-        #TODO: move file to smb path counterpart
+        #TODO: move file to smb path counterpart, figure out pwd
     else
     if [[ -d "$1" ]]
     then
