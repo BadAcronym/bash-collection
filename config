@@ -62,7 +62,7 @@ function config_push()
 
     # TODO: back up only .typ / .txt / .md files, show each individually in output!
     # instead of:
-    cp "$HOME/writing/" "$HOME/smb/" -r
+    cp "$HOME/writing/" "$HOME/smb/" -r 2> /dev/null
 
     move_to_smb_recurse "$HOME/writing/"
 
