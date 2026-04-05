@@ -6,7 +6,18 @@ then
     exit 0;
 fi
 
-read -p "ARE YOU SURE YOU WANT TO TURN OFF STREAMER MODE? (y/N): " -r
+echo "ARE YOU SURE YOU WANT TO TURN OFF STREAMER MODE?"
+echo "."
+sleep 1
+echo ".."
+sleep 1
+echo "..."
+sleep 1
+echo "...."
+sleep 1
+echo "....."
+sleep 1
+read -p "(y/N): " -r
 
 echo
 
