@@ -7,19 +7,18 @@ then
 fi
 
 echo "ARE YOU SURE YOU WANT TO TURN OFF STREAMER MODE?"
-echo "."
+echo -ne "Wait 5 seconds..."
 sleep 1
-echo ".."
+echo -ne "\rWait 4 seconds..."
 sleep 1
-echo "..."
+echo -ne "\rWait 3 seconds..."
 sleep 1
-echo "...."
+echo -ne "\rWait 2 seconds..."
 sleep 1
-echo "....."
+echo -ne "\rWait 1 second... "
 sleep 1
-read -p "(y/N): " -r
-
-echo
+echo -ne "\r                 \r(y/N): "
+read -r
 
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
