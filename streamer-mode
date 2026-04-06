@@ -87,3 +87,6 @@ popd > /dev/null
 fastfetchconfig random > /dev/null
 
 rm ~/.bash_history > /dev/null
+
+clear
+fastfetch
