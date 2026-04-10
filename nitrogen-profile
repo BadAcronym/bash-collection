@@ -17,11 +17,8 @@ then
     then
         echo "configuration exists."
         read -p "Do you wish to overwrite profile-$2? (y/N): " -r
-        if [[ $REPLY =~ ^[Yy]$ ]]
+        if [[ ! $REPLY =~ ^[Yy]$ ]]
         then
-            cp bg-saved.cfg profile-$2
-            echo -e "overwritten profile-$2 with current configuration."
-        else
             echo -e "aborted."
             exit 2;
         fi
@@ -55,9 +52,49 @@ then
 else
 if [[ $1 = "list" ]]
 then
-    for name in $(ls -I bg-saved.cfg -I nitrogen.cfg)
+    list=$(ls -I bg-saved.cfg -I nitrogen.cfg)
+    last_theme=""
+
+    # TODO: issue warning if one of the indices between 0 and max_index wasn't found.
+    # recommend moving the max index to fill that gap.
+
+    for name in $list
     do
-        echo "${name#profile-}"
+        if [[ $name =~ ^profile-${last_theme}-([0-9]+)$ ]]
+        then
+            continue;
+        else if [[ $name =~ ^profile-(.+)-([0-9]+)$ ]]
+        then
+            theme="${BASH_REMATCH[1]}"
+            last_theme=$theme
+            max_index=0
+
+            for name_2 in $list
+            do
+                if [[ $name_2 =~ ^profile-${theme}-([0-9]+)$ ]]
+                then
+                    index=${BASH_REMATCH[1]}
+                    if ((index > max_index))
+                    then
+                        max_index=$index
+                    fi
+                fi
+            done
+
+            echo -n "[0-$max_index]"
+            if ((max_index > 9 ))
+            then
+                echo " $theme"
+            else
+                echo "  $theme"
+            fi
+        else if [[ $name =~ ^profile-(.+)$ ]]
+        then
+            theme="${BASH_REMATCH[1]}"
+            echo "       $theme"
+        fi
+        fi
+        fi
     done
     popd > /dev/null
     exit 0;
