@@ -61,5 +61,5 @@ echo "$pages total pages in $books average-length novels."
 # echo "$largest words in the largest file."
 # echo "$largestpages pages in the largest file."
 # TODO: replace wc for own implementation using my StringView lib,
-# keep count of the most common words, optionally output them? idk maybe
+# keep count of the most common words, output them (except most common words, like 'the', 'an', etc.
 echo "----------------------------------------------------"
