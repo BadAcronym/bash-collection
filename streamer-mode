@@ -1,92 +1,93 @@
 #!/bin/bash
 
-if [[ ! "$(ls -A $HOME/.config/nitrogen_backup_/)" ]] && [[ ! "$(ls -A $HOME/.config/fastfetch_backup_/)" ]]
-then
-    echo -e "no need, already in streamer mode."
-    exit 0;
-fi
+function set_streamer_mode()
+{
+    pushd ~/.config/nitrogen/ > /dev/null
 
-pushd ~/.config/nitrogen/ > /dev/null
-dir="$HOME/.config/nitrogen_backup/"
+    for config in profile*
+    do
+        if [[ ! -f $config ]]
+        then
+            continue;
+        fi
 
-if [[ ! -d $dir ]]
-then
-    mkdir $dir > /dev/null
-fi
+        rm $config
+    done
+    popd > /dev/null
 
-for config in profile*
-do
-    if [[ ! -f $config ]]
+    pushd ~/.config/nitrogen_backup_/ > /dev/null
+    dir="$HOME/.config/nitrogen/"
+
+    if [[ ! -d $dir ]]
     then
-        continue;
+        mkdir $dir > /dev/null
     fi
 
-    mv $config $dir
-done
-popd > /dev/null
+    for config in profile*
+    do
+        if [[ ! -f $config ]]
+        then
+            continue;
+        fi
 
-pushd ~/.config/nitrogen_backup_/ > /dev/null
-dir="$HOME/.config/nitrogen/"
+        cp $config $dir
+    done
+    popd > /dev/null
 
-if [[ ! -d $dir ]]
-then
-    mkdir $dir > /dev/null
-fi
+    nitrogen-profile random
 
-for config in profile*
-do
-    if [[ ! -f $config ]]
+    pushd ~/.config/fastfetch/ > /dev/null
+
+    for config in *.jsonc
+    do
+        if [[ ! -f $config ]] || [[ $config = "config.jsonc" ]]
+        then
+            continue;
+        fi
+
+        rm $config
+    done
+    popd > /dev/null
+
+    pushd ~/.config/fastfetch_backup_/ > /dev/null
+    dir="$HOME/.config/fastfetch/"
+
+    if [[ ! -d $dir ]]
     then
-        continue;
+        mkdir $dir > /dev/null
     fi
 
-    mv $config $dir
-done
-popd > /dev/null
+    for config in *.jsonc
+    do
+        if [[ ! -f $config ]]
+        then
+            continue;
+        fi
 
-nitrogen-profile random
+        cp $config $dir
+    done
+    popd > /dev/null
 
-pushd ~/.config/fastfetch/ > /dev/null
-dir="$HOME/.config/fastfetch_backup/"
+    fastfetchconfig random > /dev/null
 
-if [[ ! -d $dir ]]
+    rm ~/.bash_history > /dev/null
+
+    clear
+    fastfetch
+}
+
+LOCKDIR=/tmp/nitrogen_lock_directory/
+
+if mkdir -- "$LOCKDIR"
 then
-    mkdir $dir > /dev/null
-fi
+    set_streamer_mode
 
-for config in *.jsonc
-do
-    if [[ ! -f $config ]] || [[ $config = "config.jsonc" ]]
+    if rmdir -- "$LOCKDIR"
     then
-        continue;
+        echo "successfully set streamer mode."
+    else
+        echo "could not remove lock." >&2
     fi
-
-    mv $config $dir
-done
-popd > /dev/null
-
-pushd ~/.config/fastfetch_backup_/ > /dev/null
-dir="$HOME/.config/fastfetch/"
-
-if [[ ! -d $dir ]]
-then
-    mkdir $dir > /dev/null
+else
+    echo "could not get lock." >&2
 fi
-
-for config in *.jsonc
-do
-    if [[ ! -f $config ]]
-    then
-        continue;
-    fi
-
-    mv $config $dir
-done
-popd > /dev/null
-
-fastfetchconfig random > /dev/null
-
-rm ~/.bash_history > /dev/null
-
-clear
-fastfetch
