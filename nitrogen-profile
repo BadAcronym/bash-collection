@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# CURRENT: when saving/deleting, also save/delete to/from backup folder.
+# check where we are by reading $HOME/streamermode :))
+
 pushd $HOME/.config/nitrogen > /dev/null
 
 if [[ $1 = "random" ]]
