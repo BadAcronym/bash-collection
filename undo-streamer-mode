@@ -2,83 +2,63 @@
 
 function unset_streamer_mode()
 {
-    echo "ARE YOU SURE YOU WANT TO TURN OFF STREAMER MODE?"
-    echo -ne "Wait 5 seconds..."
-    sleep 1
-    echo -ne "\rWait 4 seconds..."
-    sleep 1
-    echo -ne "\rWait 3 seconds..."
-    sleep 1
-    echo -ne "\rWait 2 seconds..."
-    sleep 1
-    echo -ne "\rWait 1 second... "
-    sleep 1
-    echo -ne "\r                 \r(y/N): "
-    read -r
+    pushd ~/.config/nitrogen/ > /dev/null
 
-    if [[ $REPLY =~ ^[Yy]$ ]]
-    then
-        pushd ~/.config/nitrogen/ > /dev/null
+    for config in profile*
+    do
+        if [[ ! -f $config ]]
+        then
+            continue;
+        fi
 
-        for config in profile*
-        do
-            if [[ ! -f $config ]]
-            then
-                continue;
-            fi
+        rm $config
+    done
+    popd > /dev/null
 
-            rm $config
-        done
-        popd > /dev/null
+    pushd ~/.config/nitrogen_backup/ > /dev/null
+    dir="$HOME/.config/nitrogen/"
 
-        pushd ~/.config/nitrogen_backup/ > /dev/null
-        dir="$HOME/.config/nitrogen/"
+    for config in profile*
+    do
+        if [[ ! -f $config ]]
+        then
+            continue;
+        fi
 
-        for config in profile*
-        do
-            if [[ ! -f $config ]]
-            then
-                continue;
-            fi
+        cp $config $dir
+    done
 
-            cp $config $dir
-        done
+    nitrogen-profile random
 
-        nitrogen-profile random
+    pushd ~/.config/fastfetch/ > /dev/null
 
-        pushd ~/.config/fastfetch/ > /dev/null
+    for config in *.jsonc
+    do
+        if [[ ! -f $config ]] || [[ $config = "config.jsonc" ]]
+        then
+            continue;
+        fi
 
-        for config in *.jsonc
-        do
-            if [[ ! -f $config ]] || [[ $config = "config.jsonc" ]]
-            then
-                continue;
-            fi
+        rm $config
+    done
+    popd > /dev/null
 
-            rm $config
-        done
-        popd > /dev/null
+    pushd ~/.config/fastfetch_backup/ > /dev/null
+    dir="$HOME/.config/fastfetch/"
 
-        pushd ~/.config/fastfetch_backup/ > /dev/null
-        dir="$HOME/.config/fastfetch/"
+    for config in *.jsonc
+    do
+        if [[ ! -f $config ]]
+        then
+            continue;
+        fi
 
-        for config in *.jsonc
-        do
-            if [[ ! -f $config ]]
-            then
-                continue;
-            fi
+        cp $config $dir
+    done
 
-            cp $config $dir
-        done
+    fastfetchconfig random
 
-        fastfetchconfig random
-
-        popd > /dev/null
-
-    else
-        exit 1
-    fi
+    popd > /dev/null
 }
 
 LOCKDIR=/tmp/nitrogen_lock_directory/
