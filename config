@@ -162,7 +162,7 @@ function config_push()
         cp $boomer $HOME/repository/dotfiles/boomer/config
         echo -e "backed up $boomer."
     else
-        echo -e "WARN: no config found in $boomer."
+        echo -e "warning: no config found in $boomer."
     fi
 
     i3=$HOME/.config/i3/config
@@ -171,7 +171,7 @@ function config_push()
         cp $i3 $HOME/repository/dotfiles/i3/i3/config
         echo -e "backed up $i3."
     else
-        echo -e "WARN: no config found in $i3."
+        echo -e "warning: no config found in $i3."
     fi
 
     i3status=$HOME/.config/i3status/config
@@ -180,7 +180,7 @@ function config_push()
         cp $i3status $HOME/repository/dotfiles/i3/i3status/config
         echo -e "backed up $i3status."
     else
-        echo -e "WARN: no config found in $i3status."
+        echo -e "warning: no config found in $i3status."
     fi
 
     mangohudcustom=$HOME/.config/MangoHud/custom.conf
@@ -189,7 +189,7 @@ function config_push()
         cp $mangohudcustom $HOME/repository/dotfiles/MangoHud/custom.conf
         echo -e "backed up $mangohudcustom."
     else
-        echo -e "WARN: no config found in $mangohudcustom."
+        echo -e "warning: no config found in $mangohudcustom."
     fi
 
     mangohuddefault=$HOME/.config/MangoHud/MangoHud.conf
@@ -198,7 +198,7 @@ function config_push()
         cp $mangohuddefault $HOME/repository/dotfiles/MangoHud/MangoHud.conf
         echo -e "backed up $mangohuddefault."
     else
-        echo -e "WARN: no config found in $mangohuddefault."
+        echo -e "warning: no config found in $mangohuddefault."
     fi
 
     mpv=$HOME/.config/mpv/mpv.conf
@@ -207,7 +207,7 @@ function config_push()
         cp $mpv $HOME/repository/dotfiles/mpv/mpv.conf
         echo -e "backed up $mpv."
     else
-        echo -e "WARN: no config found in $mpv."
+        echo -e "warning: no config found in $mpv."
     fi
 
     nviminit=$HOME/.config/nvim/init.lua
@@ -216,7 +216,7 @@ function config_push()
         cp $nviminit $HOME/repository/dotfiles/nvim/init.lua
         echo -e "backed up $nviminit."
     else
-        echo -e "WARN: no config found in $nviminit."
+        echo -e "warning: no config found in $nviminit."
     fi
 
     nvimoptions=$HOME/.config/nvim/lua/nvimoptions.lua
@@ -225,7 +225,7 @@ function config_push()
         cp $nvimoptions $HOME/repository/dotfiles/nvim/lua/nvimoptions.lua
         echo -e "backed up $nvimoptions."
     else
-        echo -e "WARN: no config found in $nvimoptions."
+        echo -e "warning: no config found in $nvimoptions."
     fi
 
     lspconfig=$HOME/.config/nvim/lua/lspconfig.lua
@@ -234,7 +234,7 @@ function config_push()
         cp $lspconfig $HOME/repository/dotfiles/nvim/lua/lspconfig.lua
         echo -e "backed up $lspconfig."
     else
-        echo -e "WARN: no config found in $lspconfig."
+        echo -e "warning: no config found in $lspconfig."
     fi
 
     pushd "$HOME/.config/nvim/lua/plugins" > /dev/null
@@ -243,7 +243,7 @@ function config_push()
     do
         if [[ ! -f $plugin ]]
         then
-            echo -e "WARN: no configs found in $(pwd)."
+            echo -e "warning: no configs found in $(pwd)."
         fi
 
         cp $plugin $HOME/repository/dotfiles/nvim/lua/plugins/
@@ -258,7 +258,7 @@ function config_push()
         cp $picom $HOME/repository/dotfiles/picom/picom.conf
         echo -e "backed up $picom."
     else
-        echo -e "WARN: no config found in $picom."
+        echo -e "warning: no config found in $picom."
     fi
 
     wezterm=$HOME/.config/wezterm/wezterm.lua
@@ -267,7 +267,7 @@ function config_push()
         cp $wezterm $HOME/repository/dotfiles/wezterm/wezterm.lua
         echo -e "backed up $wezterm."
     else
-        echo -e "WARN: no config found in $wezterm."
+        echo -e "warning: no config found in $wezterm."
     fi
 
     bashrc=$HOME/.bashrc
@@ -276,7 +276,7 @@ function config_push()
         cp $bashrc $HOME/repository/dotfiles/x11/.bashrc
         echo -e "backed up $bashrc."
     else
-        echo -e "WARN: no config found in $bashrc."
+        echo -e "warning: no config found in $bashrc."
     fi
 
     bashprofile=$HOME/.bash_profile
@@ -285,7 +285,7 @@ function config_push()
         cp $bashprofile $HOME/repository/dotfiles/x11/.bash_profile
         echo -e "backed up $bashprofile."
     else
-        echo -e "WARN: no config found in $bashprofile."
+        echo -e "warning: no config found in $bashprofile."
     fi
 
     xinitrc=$HOME/.xinitrc
@@ -294,7 +294,7 @@ function config_push()
         cp $xinitrc $HOME/repository/dotfiles/x11/.xinitrc
         echo -e "backed up $xinitrc."
     else
-        echo -e "WARN: no config found in $xinitrc."
+        echo -e "warning: no config found in $xinitrc."
     fi
 
     xresources=$HOME/.Xresources
@@ -303,7 +303,7 @@ function config_push()
         cp $xresources $HOME/repository/dotfiles/x11/.Xresources
         echo -e "backed up $xresources."
     else
-        echo -e "WARN: no config found in $xresources."
+        echo -e "warning: no config found in $xresources."
     fi
 
     # TODO: display lazygit if there is a diff
