@@ -7,8 +7,8 @@ imgsurf/src/                    \
 imgsurf/include/                \
 river2D/src/                    \
 river2D/include/                \
-River/src/                      \
-River/include/                  \
+river3D/src/                    \
+river3D/include/                \
 river2D_mapedit/src/            \
 river2D_mapedit/include/        \
 islescape/src/                  \
