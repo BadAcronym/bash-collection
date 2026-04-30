@@ -1,37 +1,58 @@
 #!/bin/bash
 
 # TODO: back up OBS settings & such
+# TODO: install oh-my-posh through the setup script
 # TODO: don't back up writing's git directory, but every subfolder besides that. lol
 
 pkglist="           \
 cloc                \
-picom               \
+fastfetch 	    \
+i3-wm               \
+i3status            \
 lazygit             \
 librewolf-bin       \
+nitrogen            \
+picom               \
+rofi	            \
 wezterm-nightly-bin \
 "
 
 function config_setup()
 {
-    # TODO: assume I'm setting up an arch machine
     echo -e "\n\033[1;35minitiating full setup.\033[0m"
-    echo -e "\ndownloading yay..."
 
-    # TODO: install yay
+    which yay > /dev/null
+
+    if [[ $? != 0 ]]
+    then
+        echo -e "\nyay not found, installing..."
+	sudo pacman -S --needed base-devel git
+	pushd "$HOME" > /dev/null
+
+	git clone https://aur.archlinux.org/yay.git
+	cd "./yay"
+	makepkg -si
+
+	popd > /dev/null
+	echo -e "\nset up yay successfully."
+    fi
 
     echo -e "\ndownloading full list of packages..."
     yay -Sy $pkglist
 
-    # TODO: add all relevant packages here
     echo -e "\n\033[1;32mall done!\033[0m\n"
 }
 
 function config_pull()
 {
     echo -e "\n\033[1;35mpulling config files.\033[0m"
-    # TODO: pull every relevant config from the repo,
+
+    # TODO: pull dotfiles repo
+
+    # TODO: copy all dotfiles to their destination paths
     # keep track of how many files were updated,
     # give summary of which
+    
     echo -e "\n\033[1;32mall done!\033[0m\n"
 }
 
@@ -317,17 +338,21 @@ function config_clean
     echo -e "\n\033[1;32mall done!\033[0m\n"
 }
 
-if [[ $1 = "setup" ]]; then
+if [[ $1 = "setup" ]] 
+then
     config_setup
     config_pull
 
-else if [[ $1 = "pull" ]]; then
+else if [[ $1 = "pull" ]]
+then
     config_pull
 
-else if [[ $1 = "push" ]]; then
+else if [[ $1 = "push" ]]
+then
     config_push
 
-else if [[ $1 = "clean" ]]; then
+else if [[ $1 = "clean" ]]
+then
     config_clean
 
 else
