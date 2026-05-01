@@ -15,10 +15,13 @@ librewolf-bin       \
 mold                \
 neovim-nightly-bin  \
 nitrogen            \
+oh-my-posh-bin      \
 premake             \
 picom               \
 rofi                \
+ripgrep             \
 wezterm-nightly-bin \
+xclip               \
 "
 
 function config_setup()
@@ -39,22 +42,6 @@ function config_setup()
 
         popd > /dev/null
         echo -e "\nset up yay successfully."
-    fi
-
-    which oh-my-posh > /dev/null
-
-    if [[ $? != 0 ]]
-    then
-        echo -e "\noh-my-posh not found, installing..."
-
-        which unzip > /dev/null
-        if [[ $? != 0 ]]
-        then
-            echo -e "\nunzip not found, installing..."
-            yay -Sy unzip
-        fi
-
-        curl -s https://ohmyposh.dev/install.sh | bash -s
     fi
 
     echo -e "\ndownloading full list of packages..."
