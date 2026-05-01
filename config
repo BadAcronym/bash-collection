@@ -1,18 +1,21 @@
 #!/bin/bash
 
 # TODO: back up OBS settings & such
-# TODO: install oh-my-posh through the setup script
-# TODO: don't back up writing's git directory, but every subfolder besides that. lol
 
 pkglist="           \
+clang               \
 cloc                \
 fastfetch           \
+tree-sitter-cli     \
+ttf-firacode-nerd   \
 i3-wm               \
 i3status            \
 lazygit             \
 librewolf-bin       \
+mold                \
 neovim-nightly-bin  \
 nitrogen            \
+premake             \
 picom               \
 rofi                \
 wezterm-nightly-bin \
@@ -27,15 +30,31 @@ function config_setup()
     if [[ $? != 0 ]]
     then
         echo -e "\nyay not found, installing..."
-    sudo pacman -S --needed base-devel git
-    pushd "$HOME" > /dev/null
+        sudo pacman -S --needed base-devel git
+        pushd "$HOME" > /dev/null
 
-    git clone https://aur.archlinux.org/yay.git
-    cd "./yay"
-    makepkg -si
+        git clone https://aur.archlinux.org/yay.git
+        cd "./yay"
+        makepkg -si
 
-    popd > /dev/null
-    echo -e "\nset up yay successfully."
+        popd > /dev/null
+        echo -e "\nset up yay successfully."
+    fi
+
+    which oh-my-posh > /dev/null
+
+    if [[ $? != 0 ]]
+    then
+        echo -e "\noh-my-posh not found, installing..."
+
+        which unzip > /dev/null
+        if [[ $? != 0 ]]
+        then
+            echo -e "\nunzip not found, installing..."
+            yay -Sy unzip
+        fi
+
+        curl -s https://ohmyposh.dev/install.sh | bash -s
     fi
 
     echo -e "\ndownloading full list of packages..."
@@ -70,6 +89,7 @@ function config_pull()
 
     pushd "$HOME/repository/dotfiles" > /dev/null
 
+    echo -e "\ncopying boomer configuration..."
     if [[ ! -d "$HOME/.config/boomer/" ]]
     then
         mkdir "$HOME/.config/boomer/"
@@ -78,16 +98,36 @@ function config_pull()
     cp "./boomer/config" "$HOME/.config/boomer/config"
     echo -e "copied boomer config to $HOME/.config/boomer/config"
 
-    # TODO: copy fastfetch config
+    echo -e "\ncopying fastfetch configuration..."
     if [[ ! -d "$HOME/.config/fastfetch/" ]]
     then
         mkdir "$HOME/.config/fastfetch/"
     fi
 
-    # TODO: copy i3 config files
+    cp "./fastfetch/default.jsonc" "$HOME/.config/fastfetch/config.jsonc"
+    echo -e "copied default.jsonc to $HOME/.config/fastfetch/default.jsonc"
+
+    # TODO: copy fontconfig here, too
+    echo -e "\ncopying i3 configuration..."
+    if [[ ! -d "$HOME/.config/i3/" ]]
+    then
+        mkdir "$HOME/.config/i3/"
+    fi
+    if [[ ! -d "$HOME/.config/i3status/" ]]
+    then
+        mkdir "$HOME/.config/i3status/"
+    fi
+
+    cp "./i3/i3/config" "$HOME/.config/i3/config"
+    echo -e "copied i3 config to $HOME/.config/i3/config"
+
+    cp "./i3/i3status/config" "$HOME/.config/i3status/config"
+    echo -e "copied i3status config to $HOME/.config/i3status/config"
 
     # TODO: copy mpv config
+    echo -e "\ncopying mpv configuration..."
 
+    echo -e "\ncopying neovim configuration..."
     if [[ ! -d "$HOME/.config/nvim/" ]]
     then
         mkdir "$HOME/.config/nvim/"
@@ -98,38 +138,54 @@ function config_pull()
     pushd "./nvim/" > /dev/null
 
     cp "./init.lua" "$HOME/.config/nvim/init.lua"
-        echo -e "copied init.lua config to $HOME/.config/nvim/init.lua"
+    echo -e "copied init.lua config to $HOME/.config/nvim/init.lua"
 
     cd "./lua/"
 
     cp "./lspconfig.lua" "$HOME/.config/nvim/lua/lspconfig.lua"
-        echo -e "copied lspconfig.lua config to $HOME/.config/nvim/lua/lspconfig.lua"
+    echo -e "copied lspconfig.lua config to $HOME/.config/nvim/lua/lspconfig.lua"
 
     cp "./nvimoptions.lua" "$HOME/.config/nvim/lua/nvimoptions.lua"
-        echo -e "copied nvimoptions.lua config to $HOME/.config/nvim/lua/nvimoptions.lua"
+    echo -e "copied nvimoptions.lua config to $HOME/.config/nvim/lua/nvimoptions.lua"
 
     cd "./plugins/"
 
     for plugin in *.lua
     do
         cp $plugin "$HOME/.config/nvim/lua/plugins/$plugin"
-        echo -e "pulled $plugin."
+        echo -e "copied $plugin to $HOME/.config/nvim/lua/plugins/$plugin"
     done
 
     popd > /dev/null
 
-    # TODO: copy oh-my-posh config
-
     # TODO: copy picom config
+    echo -e "\ncopying picom configuration..."
 
     # TODO: copy qutebrowser config
+    echo -e "\ncopying qutebrowser configuration..."
 
-    # TODO: copy wezterm config
+    echo -e "\ncopying wezterm configuration..."
+    if [[ ! -d "$HOME/.config/wezterm/" ]]
+    then
+        mkdir "$HOME/.config/wezterm/"
+    fi
 
-    # TODO: copy x11/* configs
+    cp "./wezterm/wezterm.lua" "$HOME/.config/wezterm/wezterm.lua"
+    echo -e "copied wezterm.lua config to $HOME/.config/wezterm/wezterm.lua"
 
-    # TODO: keep track of how many files were updated,
-    # give summary of which
+    echo -e "\ncopying linux configuration..."
+
+    cp "./x11/.Xresources" "$HOME/.Xresources"
+    echo -e "copied .Xresources to $HOME/.Xresources"
+
+    cp "./x11/.bash_profile" "$HOME/.bash_profile"
+    echo -e "copied .bash_profile to $HOME/.bash_profile"
+
+    cp "./x11/.bashrc" "$HOME/.bashrc"
+    echo -e "copied .bashrc to $HOME/.bashrc"
+
+    cp "./x11/.xinitrc" "$HOME/.xinitrc"
+    echo -e "copied .xinitrc to $HOME/.xinitrc"
 
     popd > /dev/null
 
