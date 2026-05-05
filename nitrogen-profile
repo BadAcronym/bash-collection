@@ -68,12 +68,11 @@ if [[ $1 = "list" ]]
 then
     list=$(ls -I bg-saved.cfg -I nitrogen.cfg)
     last_theme=""
-
-    # TODO: issue warning if one of the indices between 0 and max_index wasn't found.
-    # recommend moving the max index to fill that gap.
+    count=0
 
     for name in $list
     do
+        count=$((count + 1))
         if [[ $name =~ ^profile-${last_theme}-([0-9]+)$ ]]
         then
             continue;
@@ -110,6 +109,9 @@ then
         fi
         fi
     done
+
+    echo -e "\nTotal theme count: $count"
+
     popd > /dev/null
     exit 0;
 else
