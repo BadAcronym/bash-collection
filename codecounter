@@ -3,6 +3,7 @@
 pushd $HOME/repository/ > /dev/null
 
 cloc                            \
+--force-lang="C,h"              \
 imgsurf/src/                    \
 imgsurf/include/                \
 imgsurf/run                     \
