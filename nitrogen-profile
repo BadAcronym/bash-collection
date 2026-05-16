@@ -2,7 +2,7 @@
 
 STREAMER_MODE=$(cat $HOME/streamermode)
 
-if [[ $STREAMER_MODE  ]]
+if [[ $STREAMER_MODE ]]
 then
     SAVEDIR="$HOME/.config/nitrogen_backup/"
 else
