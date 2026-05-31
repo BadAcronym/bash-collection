@@ -27,6 +27,7 @@ folders+=("$HOME/repository/river3D/")
 folders+=("$HOME/repository/islescape/")
 folders+=("$HOME/repository/river2D_mapedit")
 folders+=("$HOME/repository/bash-collection/")
+folders+=("$HOME/repository/islescape/vendor/river2D_mapedit/")
 
 pushd $HOME/repository/ > /dev/null
 
