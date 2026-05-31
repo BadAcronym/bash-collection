@@ -1,0 +1,45 @@
+#!/bin/bash
+
+folders=("$HOME/repository/river2D/")
+folders+=("$HOME/repository/marino/vendor/river2D/")
+folders+=("$HOME/repository/islescape/vendor/river2D/")
+folders+=("$HOME/repository/river2D_mapedit/vendor/river2D/")
+
+folders+=("$HOME/repository/imgsurf/")
+folders+=("$HOME/repository/river2D/vendor/imgsurf/")
+folders+=("$HOME/repository/marino/vendor/river2D/vendor/imgsurf/")
+folders+=("$HOME/repository/islescape/vendor/river2D/vendor/imgsurf/")
+folders+=("$HOME/repository/river2D_mapedit/vendor/river2D/vendor/imgsurf/")
+
+folders+=("$HOME/repository/puddle/")
+folders+=("$HOME/repository/river2D/vendor/puddle/")
+folders+=("$HOME/repository/islescape/vendor/puddle/")
+folders+=("$HOME/repository/river2D_mapedit/vendor/puddle/")
+folders+=("$HOME/repository/islescape/vendor/river2D/vendor/puddle/")
+folders+=("$HOME/repository/river2D_mapedit/vendor/river2D/vendor/puddle/")
+
+folders+=("$HOME/repository/marino/")
+folders+=("$HOME/repository/dotfiles/")
+folders+=("$HOME/repository/gitfluss/")
+folders+=("$HOME/repository/blazeterm/")
+folders+=("$HOME/repository/flushback/")
+folders+=("$HOME/repository/river3D/")
+folders+=("$HOME/repository/islescape/")
+folders+=("$HOME/repository/river2D_mapedit")
+
+pushd $HOME/repository/ > /dev/null
+
+for folder in ${folders[@]}
+do
+    cd $folder
+
+    echo "fetching $folder..."
+    git fetch
+
+    echo "pulling $folder..."
+    git pull
+done
+
+popd > /dev/null
+
+echo -e "\033[32;1;1mall repositories fetched and pulled.\033[0m"
