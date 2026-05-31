@@ -35,10 +35,8 @@ for folder in ${folders[@]}
 do
     cd $folder
 
-    echo "fetching $folder..."
+    echo "updating $folder..."
     git fetch
-
-    echo "pulling $folder..."
     git pull
 done
 
