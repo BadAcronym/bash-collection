@@ -28,14 +28,6 @@ folders+=("$HOME/repository/islescape/")
 folders+=("$HOME/repository/river2D_mapedit")
 folders+=("$HOME/repository/bash-collection/")
 
-islescape_mapedit="$HOME/repository/islescape/vendor/river2D_mapedit/"
-
-folders+=($islescape_mapedit)
-folders+=("$islescape_mapedit/vendor/puddle/")
-folders+=("$islescape_mapedit/vendor/river2D/")
-folders+=("$islescape_mapedit/vendor/river2D/vendor/puddle/")
-folders+=("$islescape_mapedit/vendor/river2D/vendor/imgsurf/")
-
 pushd $HOME/repository/ > /dev/null
 
 for folder in ${folders[@]}
