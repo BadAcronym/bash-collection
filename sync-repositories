@@ -30,15 +30,16 @@ folders+=("$HOME/repository/bash-collection/")
 
 pushd $HOME/repository/ > /dev/null
 
-for folder in ${folders[@]}
-do
-    cd $folder
-
-    echo "updating $folder..."
+function update()
+{
+    cd $1
     git fetch
     git pull
+}
+
+for folder in ${folders[@]}
+do
+    update $folder &
 done
 
 popd > /dev/null
-
-echo -e "\033[32;1;1mall repositories fetched and pulled.\033[0m"
