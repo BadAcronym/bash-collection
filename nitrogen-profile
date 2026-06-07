@@ -143,5 +143,5 @@ fi
 fi
 
 cp $theme bg-saved.cfg
-nitrogen --restore 2> /dev/null
+nitrogen --restore 2> /dev/null &
 popd > /dev/null
