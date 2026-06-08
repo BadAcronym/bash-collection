@@ -51,7 +51,7 @@ then
     else
     if [[ ! -f "profile-$2" ]] && [[ ! -f "$SAVEDIR/profile-$2" ]]
     then
-        echo -e "\n\033[31;1;1ma profile-$2 does not exist, can't delete.\033[0m\n"
+        echo -e "\033[31;1;1mERROR: a configuration of name '$2' does not exist, can't delete.\033[0m\n"
         exit 1;
     fi
     fi
@@ -132,7 +132,7 @@ else
     else
         if [[ ! -f $theme ]]
         then
-            echo -e "\n\033[31;1;1ma profile of name $theme does not exist.\033[0m\n"
+            echo -e "\033[31;1;1mERROR: a configuration of name '$1' does not exist.\033[0m\n"
             popd > /dev/null
             exit 1;
         fi

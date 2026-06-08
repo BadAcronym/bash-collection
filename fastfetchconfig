@@ -31,7 +31,7 @@ then
         rm $2.jsonc
         echo "deleted configuration '$2.jsonc'."
     else
-        echo -e "\033[31;1;1mERROR: configuration named '$2' does not exist.\033[0m\n"
+        echo -e "\033[31;1;1mERROR: a configuration of name '$2' does not exist.\033[0m\n"
         exit 1;
     fi
 
@@ -64,7 +64,7 @@ else
             then
                 ffconf="$1.jsonc"
             else
-                echo -e "\033[31;1;1mERROR: configuration named '$1' does not exist.\033[0m\n"
+                echo -e "\033[31;1;1mERROR: a configuration of name '$1' does not exist.\033[0m\n"
                 exit 1;
             fi
         fi
