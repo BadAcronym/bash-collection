@@ -93,7 +93,7 @@ then
     elif [[ -f "$2.jsonc" ]] || [[ -f "$SAVEDIR/$2.jsonc" ]]
     then
         echo "configuration exists."
-        read -p "Do you wish to overwrite profile-$2? (y/N): " -r
+        read -p "Do you wish to overwrite $2.jsonc? (y/N): " -r
         if [[ ! $REPLY =~ ^[Yy]$ ]]
         then
             echo -e "aborted."
@@ -107,22 +107,33 @@ then
     echo -e "$HOME/.config/fastfetch/ \nand\n$SAVEDIR"
 
 else
-    if [[ $1 != '' ]]
+    if [[ $1 = "random" ]]
     then
+        theme=$(ls -I config.jsonc | shuf -n 1)
+    else
+        theme=$1
+    fi
 
-        if [[ $1 = "random" ]]
-        then
-            theme=$(ls "$HOME/.config/fastfetch/" -I config.jsonc | shuf -n 1)
-        else
-            if [[ -f $1.jsonc ]]
-            then
-                theme="$1.jsonc"
-            else
-                echo -e "\033[31;1;1mERROR: a configuration of name '$1' does not exist.\033[0m\n"
-                exit 1;
-            fi
-        fi
+    if [[ ! -f "$theme.jsonc" ]] && [[ -f "$1-0.jsonc" ]]
+    then
+        count=0
 
+        for curr in $theme-*
+        do
+            count=$((count + 1))
+        done
+
+        final=$(seq $count | shuf -n 1)
+        theme="$theme-$((final - 1)).jsonc"
+
+    elif [[ $theme != "" ]] && [[ ! -f $theme ]]
+    then
+        echo -e "\033[31;1;1mERROR: a configuration of name '$1' does not exist.\033[0m\n"
+        exit 1;
+    fi
+
+    if [[ $theme != "" ]]
+    then
         cp $theme "config.jsonc"
     fi
 
