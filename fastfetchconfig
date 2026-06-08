@@ -1,77 +1,132 @@
 #!/bin/bash
 
-configFolder="$HOME/.config/fastfetch/"
-configFolder=$(realpath $configFolder)
+STREAMER_MODE=$(cat $HOME/streamermode)
+
+if [[ $STREAMER_MODE ]]
+then
+    SAVEDIR="$HOME/.config/fastfetch_backup/"
+else
+    SAVEDIR="$HOME/.config/fastfetch_backup_/"
+fi
+
+pushd $HOME/.config/fastfetch/ > /dev/null
 
 if [[ $1 = "list" ]]
 then
-    for name in $(ls $configFolder -I config.jsonc)
+    list=$(ls -I config.jsonc)
+    last_theme=""
+    count=0
+
+    for name in $list
     do
-        name="${name##*/}"
-        echo "${name%.jsonc}"
+        count=$((count + 1))
+        if [[ $name =~ ^${last_theme}-([0-9]+).jsonc$ ]]
+        then
+            continue;
+        elif [[ $name =~ ^(.+)-([0-9]+).jsonc$ ]]
+        then
+            theme="${BASH_REMATCH[1]}"
+            last_theme=$theme
+            max_index=0
+
+            for name_2 in $list
+            do
+                if [[ $name_2 =~ ^${theme}-([0-9]+).jsonc$ ]]
+                then
+                    index=${BASH_REMATCH[1]}
+                    if ((index > max_index))
+                    then
+                        max_index=$index
+                    fi
+                fi
+            done
+
+            if (( $max_index < 10 ))
+            then
+                echo -n "[0$max_index]"
+            else
+                echo -n "[$max_index]"
+            fi
+            echo " $theme"
+
+        else
+            echo "     ${name%.jsonc}"
+        fi
     done
+
+    echo -e "\nTotal theme count: $count.\n"
 
 elif [[ $1 = "edit" ]]
 then
     if [[ $2 = '' ]]
     then
         echo "editing current configuration..."
-        nvim "$configFolder/config.jsonc"
+        nvim "config.jsonc"
     else
         echo "editing '$2'"
-        nvim "$configFolder/$2.jsonc"
+        nvim "$2.jsonc"
     fi
 
-elif [[ $1 = "delete" ]]
+elif [[ $1 = "delete" ]] || [[ $1 = "remove" ]]
 then
-    pushd $configFolder > /dev/null
-
-    if [[ -f $2.jsonc ]]
+    if [[ $2 = "" ]]
     then
-        rm $2.jsonc
-        echo "deleted configuration '$2.jsonc'."
-    else
+        echo -e "\n\033[31;1;1ma no configuration specified.\033[0m\n"
+        exit 1;
+    elif [[ ! -f "$2.jsonc" ]] && [[ ! -f "$SAVEDIR/$2.jsonc" ]]
+    then
         echo -e "\033[31;1;1mERROR: a configuration of name '$2' does not exist.\033[0m\n"
         exit 1;
     fi
 
-    popd > /dev/null
+    rm "$2.jsonc"
+    rm "$SAVEDIR/$2.jsonc"
+    echo -e "successfully deleted configuration '$2' from:"
+    echo -e "$HOME/.config/fastfetch/ \nand\n$SAVEDIR"
 
 elif [[ $1 = "save" ]]
 then
-    pushd $configFolder > /dev/null
-
     if [[ $2 = "" ]]
     then
-        echo "can't save to a theme with no name."
-    else
-        cp "config.jsonc" $2.jsonc
-        echo "saved current config as $2.jsonc."
+        echo -e "\n\033[31;1;1mERROR: no name specified to save theme as.\033[0m\n"
+        exit 1;
+    elif [[ -f "$2.jsonc" ]] || [[ -f "$SAVEDIR/$2.jsonc" ]]
+    then
+        echo "configuration exists."
+        read -p "Do you wish to overwrite profile-$2? (y/N): " -r
+        if [[ ! $REPLY =~ ^[Yy]$ ]]
+        then
+            echo -e "aborted."
+            exit 2;
+        fi
     fi
 
-    popd > /dev/null
+    cp "config.jsonc" "$2.jsonc"
+    cp "config.jsonc" "$SAVEDIR/$2.jsonc"
+    echo -e "saved current configuration as '$2.jsonc' in:"
+    echo -e "$HOME/.config/fastfetch/ \nand\n$SAVEDIR"
 
 else
     if [[ $1 != '' ]]
     then
-        pushd $configFolder > /dev/null
 
         if [[ $1 = "random" ]]
         then
-            ffconf=$(ls "$HOME/.config/fastfetch/" -I config.jsonc | shuf -n 1)
+            theme=$(ls "$HOME/.config/fastfetch/" -I config.jsonc | shuf -n 1)
         else
             if [[ -f $1.jsonc ]]
             then
-                ffconf="$1.jsonc"
+                theme="$1.jsonc"
             else
                 echo -e "\033[31;1;1mERROR: a configuration of name '$1' does not exist.\033[0m\n"
                 exit 1;
             fi
         fi
 
-        cp $ffconf "config.jsonc"
-        popd > /dev/null
+        cp $theme "config.jsonc"
     fi
 
     fastfetch
 fi
+
+popd > /dev/null
