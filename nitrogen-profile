@@ -94,17 +94,17 @@ then
                 fi
             done
 
-            echo -n "[0-$max_index]"
-            if ((max_index > 9 ))
+            if (( $max_index < 10 ))
             then
-                echo " $theme"
+                echo -n "[0$max_index]"
             else
-                echo "  $theme"
+                echo -n "[$max_index]"
             fi
+            echo " $theme"
         else if [[ $name =~ ^profile-(.+)$ ]]
         then
             theme="${BASH_REMATCH[1]}"
-            echo "       $theme"
+            echo "     $theme"
         fi
         fi
         fi
