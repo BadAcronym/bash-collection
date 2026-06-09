@@ -67,6 +67,8 @@ then
         nvim "$2.jsonc"
     fi
 
+    fastfetch
+
 elif [[ $1 = "delete" ]] || [[ $1 = "remove" ]]
 then
     if [[ $2 = "" ]]
