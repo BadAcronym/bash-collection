@@ -110,12 +110,10 @@ else
     if [[ $1 = "random" ]]
     then
         theme=$(ls -I config.jsonc | shuf -n 1)
-    else
-        theme=$1
-    fi
 
-    if [[ ! -f "$theme.jsonc" ]] && [[ -f "$1-0.jsonc" ]]
+    elif [[ ! -f "$1.jsonc" ]] && [[ -f "$1-0.jsonc" ]]
     then
+        theme=$1
         count=0
 
         for curr in $theme-*
@@ -126,13 +124,16 @@ else
         final=$(seq $count | shuf -n 1)
         theme="$theme-$((final - 1)).jsonc"
 
-    elif [[ $theme != "" ]] && [[ ! -f $theme ]]
+    elif [[ $1 != "" ]] && [[ ! -f "$1.jsonc" ]]
     then
         echo -e "\033[31;1;1mERROR: a configuration of name '$1' does not exist.\033[0m\n"
         exit 1;
+
+    else
+        theme="$1.jsonc"
     fi
 
-    if [[ $theme != "" ]]
+    if [[ $1 != "" ]]
     then
         cp $theme "config.jsonc"
     fi
