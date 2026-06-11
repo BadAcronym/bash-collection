@@ -1,6 +1,6 @@
 #!/bin/bash
 
-folders+=("$HOME/repository/puddle/")
+folders=("$HOME/repository/puddle/")
 folders+=("$HOME/repository/river2D/vendor/puddle/")
 folders+=("$HOME/repository/river3D/vendor/puddle/")
 folders+=("$HOME/repository/islescape/vendor/puddle/")
@@ -18,9 +18,9 @@ folders+=("$HOME/repository/river2D_mapedit/vendor/river2D/vendor/imgsurf/")
 folders+=("$HOME/repository/vertstream/")
 folders+=("$HOME/repository/river3D/vendor/vertstream/")
 
-folders=("$HOME/repository/river3D/")
+folders+=("$HOME/repository/river3D/")
 
-folders=("$HOME/repository/river2D/")
+folders+=("$HOME/repository/river2D/")
 folders+=("$HOME/repository/marino/vendor/river2D/")
 folders+=("$HOME/repository/islescape/vendor/river2D/")
 folders+=("$HOME/repository/river2D_mapedit/vendor/river2D/")
