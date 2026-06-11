@@ -7,6 +7,7 @@ function update()
 {
     if [[ ! -d $1 ]]
     then
+        echo "Already up to date."
         return;
     fi
 
@@ -14,6 +15,7 @@ function update()
 
     if [[ ! -d "./.git/" ]]
     then
+        echo "Already up to date."
         return;
     fi
 
