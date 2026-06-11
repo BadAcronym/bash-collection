@@ -17,8 +17,6 @@ function update()
         return;
     fi
 
-    echo "fetching / updating $1"
-
     git fetch
     git pull
 }
