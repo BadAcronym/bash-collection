@@ -39,26 +39,31 @@ function update_all()
     done
 }
 
+# add river2D/fontflow, if it becomes a dependency
+
 folders=("$HOME/repository/bash-collection/")
 folders+=("$HOME/repository/blazeterm/")
 folders+=("$HOME/repository/dotfiles/")
 folders+=("$HOME/repository/flushback/")
+folders+=("$HOME/repository/fontflow/")
 folders+=("$HOME/repository/gitfluss/")
 folders+=("$HOME/repository/imgsurf/")
 folders+=("$HOME/repository/islescape/")
 folders+=("$HOME/repository/marino/")
 folders+=("$HOME/repository/puddle/")
 folders+=("$HOME/repository/river2D/")
-folders+=("$HOME/repository/river2D_mapedit")
+folders+=("$HOME/repository/river2D_mapedit/")
 folders+=("$HOME/repository/river3D/")
 folders+=("$HOME/repository/vertstream/")
 
+folders+=("$HOME/repository/blazeterm/vendor/fontflow/")
 folders+=("$HOME/repository/river2D/vendor/puddle/")
 folders+=("$HOME/repository/river3D/vendor/puddle/")
 folders+=("$HOME/repository/river2D/vendor/imgsurf/")
 folders+=("$HOME/repository/river3D/vendor/imgsurf/")
 folders+=("$HOME/repository/river3D/vendor/vertstream/")
 folders+=("$HOME/repository/marino/vendor/river2D/")
+folders+=("$HOME/repository/marino/vendor/fontflow/")
 folders+=("$HOME/repository/islescape/vendor/river2D/")
 folders+=("$HOME/repository/river2D_mapedit/vendor/river2D/")
 folders+=("$HOME/repository/islescape/vendor/puddle/")
