@@ -13,7 +13,7 @@ function update()
 
     cd $1
 
-    if [[ ! -d "./.git/" ]]
+    if [[ ! -d "./.git/" ]] && [[ ! -f "./git" ]]
     then
         echo "Already up to date."
         return;
