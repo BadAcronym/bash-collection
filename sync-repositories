@@ -56,6 +56,7 @@ folders+=("$HOME/repository/river2D_mapedit/")
 folders+=("$HOME/repository/river3D/")
 folders+=("$HOME/repository/vertstream/")
 
+folders+=("$HOME/repository/imgsurf/vendor/puddle/")
 folders+=("$HOME/repository/blazeterm/vendor/fontflow/")
 folders+=("$HOME/repository/river2D/vendor/puddle/")
 folders+=("$HOME/repository/river3D/vendor/puddle/")
@@ -71,8 +72,14 @@ folders+=("$HOME/repository/river2D_mapedit/vendor/puddle/")
 
 folders+=("$HOME/repository/islescape/vendor/river2D/vendor/puddle/")
 folders+=("$HOME/repository/river2D_mapedit/vendor/river2D/vendor/puddle/")
+folders+=("$HOME/repository/river2D/vendor/imgsurf/vendor/puddle/")
+folders+=("$HOME/repository/river3D/vendor/imgsurf/vendor/puddle/")
 folders+=("$HOME/repository/marino/vendor/river2D/vendor/imgsurf/")
 folders+=("$HOME/repository/islescape/vendor/river2D/vendor/imgsurf/")
 folders+=("$HOME/repository/river2D_mapedit/vendor/river2D/vendor/imgsurf/")
+
+folders+=("$HOME/repository/marino/vendor/river2D/vendor/imgsurf/vendor/puddle/")
+folders+=("$HOME/repository/islescape/vendor/river2D/vendor/imgsurf/vendor/puddle/")
+folders+=("$HOME/repository/river2D_mapedit/vendor/river2D/vendor/imgsurf/vendor/puddle/")
 
 update_all
