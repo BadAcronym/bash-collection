@@ -108,6 +108,15 @@ then
     echo -e "saved current configuration as '$2.jsonc' in:"
     echo -e "$HOME/.config/fastfetch/ \nand\n$SAVEDIR"
 
+elif [[ $1 = "what" ]] || [[ $1 = "which" ]]
+then
+    if [[ -f $HOME/fastfetchtheme ]]
+    then
+        cat $HOME/fastfetchtheme
+    else
+        echo "unknown"
+    fi
+
 else
     if [[ $1 = "random" ]]
     then
@@ -138,6 +147,7 @@ else
     if [[ $1 != "" ]]
     then
         cp $theme "config.jsonc"
+        echo ${theme%%.jsonc} > $HOME/fastfetchtheme
     fi
 
     fastfetch
