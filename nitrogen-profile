@@ -96,6 +96,15 @@ then
     echo -e "successfully deleted configuration 'profile-$2' from:"
     echo -e "$HOME/.config/nitrogen/ \nand\n$SAVEDIR"
 
+elif [[ $1 = "what" ]] || [[ $1 = "which" ]]
+then
+    if [[ -f $HOME/nitrogentheme ]]
+    then
+        cat $HOME/nitrogentheme
+    else
+        echo "unknown"
+    fi
+
 else
     if [[ $1 = "random" ]]
     then
@@ -124,6 +133,7 @@ else
     fi
 
     cp $theme bg-saved.cfg
+    echo "${theme##profile-}" > $HOME/nitrogentheme
 fi
 
 nitrogen --restore 2> /dev/null &
