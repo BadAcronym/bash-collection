@@ -15,7 +15,7 @@ function unset_streamer_mode()
     done
     popd > /dev/null
 
-    pushd ~/.config/nitrogen_backup/ > /dev/null
+    pushd ~/.config/nitrogen_backup_/ > /dev/null
     dir="$HOME/.config/nitrogen/"
 
     for config in profile*
@@ -43,7 +43,7 @@ function unset_streamer_mode()
     done
     popd > /dev/null
 
-    pushd ~/.config/fastfetch_backup/ > /dev/null
+    pushd ~/.config/fastfetch_backup_/ > /dev/null
     dir="$HOME/.config/fastfetch/"
 
     for config in *.jsonc
