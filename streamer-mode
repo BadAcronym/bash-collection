@@ -85,7 +85,7 @@ then
     if rmdir -- "$LOCKDIR"
     then
         echo "successfully set streamer mode."
-        echo "true" > $HOME/streamermode
+        echo "enabled" > $HOME/streamermode
     else
         echo "could not remove lock." >&2
     fi
