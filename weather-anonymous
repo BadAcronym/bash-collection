@@ -1,2 +1,3 @@
 #!/bin/bash
-curl wttr.is/?format="🌡️:+%t,+💧:+%h,+☔️:+%p,+🌞:+%u,+🍃:+%w"
+# curl wttr.is/?format="🌡️:+%t,+💧:+%h,+☔️:+%p,+🌞:+%u,+🍃:+%w"
+curl wttr.is/?format="%c:+%t,+💧:+%h,+☔️:+%p,+🌞:+%u,+🍃:+%w"
