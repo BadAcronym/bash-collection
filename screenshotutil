@@ -1,0 +1,29 @@
+#!/bin/bash
+
+USR="$HOME/.local/share/Steam/steamapps/compatdata/489830/pfx/drive_c/users/steamuser"
+SKYRIMDIR="$USR/My Documents/My Games/Skyrim Special Edition/Photos/"
+SKYRIMSMB="$HOME/smb/==Pics==/fict/The Elder Scrolls/Skyrim/Screens/"
+
+pushd "$SKYRIMSMB" > /dev/null
+
+for screenshot in $(ls "$SKYRIMDIR")
+do
+    if [[ ! -f "$SKYRIMDIR/$screenshot" ]]
+    then
+        continue;
+    fi
+
+    if [[ -f "$SKYRIMSMB/$screenshot" ]]
+    then
+        echo "Screenshot $screenshot exists in destination folder. Cannot overwrite."
+        continue;
+    fi
+
+    mv "$SKYRIMDIR/$screenshot" "$SKYRIMSMB"
+    echo "Successfully moved screenshot $screenshot to destination folder."
+done
+
+popd > /dev/null
+
+# TODO: Cyberpunk
+# TODO: KCD
