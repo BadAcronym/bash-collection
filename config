@@ -87,6 +87,9 @@ function config_pull()
     cp "./boomer/config" "$HOME/.config/boomer/config"
     echo -e "copied boomer config to $HOME/.config/boomer/config"
 
+    cp "./gitfluss/.conf" "$HOME/.config/gitfluss/.conf"
+    echo -e "copied gitfluss/.conf to $HOME/.config/gitfluss/.conf"
+
     echo -e "\ncopying fastfetch configuration..."
     if [[ ! -d "$HOME/.config/fastfetch/" ]]
     then
@@ -309,6 +312,17 @@ function config_push()
         echo -e "backed up $boomer."
     else
         echo -e "warning: no config found in $boomer."
+    fi
+
+    # cp "./gitfluss/.conf" "$HOME/.config/gitfluss/.conf"
+    # echo -e "copied gitfluss/.conf to $HOME/.config/gitfluss/.conf"
+    gitfluss=$HOME/.config/gitfluss/.conf
+    if [[ -f $gitfluss ]]
+    then
+        cp $gitfluss $HOME/repository/dotfiles/gitfluss/.conf
+        echo -e "backed up $gitfluss."
+    else
+        echo -e "warning: no config found in $gitfluss."
     fi
 
     i3=$HOME/.config/i3/config
