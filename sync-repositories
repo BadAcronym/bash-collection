@@ -57,6 +57,7 @@ folders+=("$HOME/repository/river3D/")
 folders+=("$HOME/repository/vertstream/")
 
 folders+=("$HOME/repository/imgsurf/vendor/puddle/")
+folders+=("$HOME/repository/gitfluss/vendor/puddle/")
 folders+=("$HOME/repository/blazeterm/vendor/fontflow/")
 folders+=("$HOME/repository/river2D/vendor/puddle/")
 folders+=("$HOME/repository/river3D/vendor/puddle/")
