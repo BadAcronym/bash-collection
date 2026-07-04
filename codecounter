@@ -36,6 +36,5 @@ CPong/src/                      \
 CPong/include/                  \
 Snek/src/                       \
 Snek/include/                   \
-UNI/                            \
 
 popd > /dev/null
