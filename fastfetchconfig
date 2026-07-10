@@ -58,14 +58,8 @@ then
 
 elif [[ $1 = "edit" ]]
 then
-    if [[ $2 = '' ]]
-    then
-        echo "editing current configuration..."
-        nvim "config.jsonc"
-    else
-        echo "editing '$2'"
-        nvim "$2.jsonc"
-    fi
+    echo "editing current configuration..."
+    nvim "config.jsonc"
 
     fastfetch
 
