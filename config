@@ -207,6 +207,9 @@ function move_to_smb_recurse()
 
 function config_push()
 {
+    cp "$HOME/repository/todo.typ" "$HOME/smb/todo.typ"
+    echo -e "\n\033[1;35mbacked up todo.typ\033[0m"
+
     echo -e "\n\033[1;35mbacking up writings...\033[0m"
 
     # TODO: back up only .typ / .txt / .md files, show each individually in output!
@@ -314,8 +317,6 @@ function config_push()
         echo -e "warning: no config found in $boomer."
     fi
 
-    # cp "./gitfluss/.conf" "$HOME/.config/gitfluss/.conf"
-    # echo -e "copied gitfluss/.conf to $HOME/.config/gitfluss/.conf"
     gitfluss=$HOME/.config/gitfluss/.conf
     if [[ -f $gitfluss ]]
     then
