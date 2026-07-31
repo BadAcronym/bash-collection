@@ -50,8 +50,10 @@ function add_files()
 
 add_files "$HOME/writing/"
 
-pages=$((wordcount / 250))
-books=$((pages / 300))
+pages=$(bc <<< "scale=2; $wordcount / 250")
+pages=$(bc <<< "scale=1; ($pages + 0.05) / 1")
+books=$(bc <<< "scale=2; $pages / 300")
+books=$(bc <<< "scale=1; ($books + 0.05) / 1")
 
 echo "----------------------------------------------------"
 echo "$wordcount words in $filecount files."
