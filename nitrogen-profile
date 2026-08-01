@@ -20,9 +20,11 @@ then
     for name in $list
     do
         count=$((count + 1))
+
         if [[ $name =~ ^profile-${last_theme}-([0-9]+)$ ]]
         then
             continue;
+
         elif [[ $name =~ ^profile-(.+)-([0-9]+)$ ]]
         then
             theme="${BASH_REMATCH[1]}"
@@ -48,6 +50,7 @@ then
                 echo -n "[$max_index]"
             fi
             echo " $theme"
+
         elif [[ $name =~ ^profile-(.+)$ ]]
         then
             theme="${BASH_REMATCH[1]}"
@@ -56,6 +59,7 @@ then
     done
 
     echo -e "\nTotal theme count: $count.\n"
+    exit 0;
 
 elif [[ $1 = "save" ]]
 then
