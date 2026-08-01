@@ -20,9 +20,11 @@ then
     for name in $list
     do
         count=$((count + 1))
+
         if [[ $name =~ ^${last_theme}-([0-9]+).jsonc$ ]]
         then
             continue;
+
         elif [[ $name =~ ^(.+)-([0-9]+).jsonc$ ]]
         then
             theme="${BASH_REMATCH[1]}"
@@ -55,6 +57,7 @@ then
     done
 
     echo -e "\nTotal theme count: $count.\n"
+    exit 0;
 
 elif [[ $1 = "edit" ]]
 then
