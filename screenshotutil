@@ -19,8 +19,8 @@ do
         continue;
     fi
 
-    mv "$SKYRIMDIR/$screenshot" "$SKYRIMSMB"
-    echo "Successfully moved screenshot $screenshot to destination folder."
+    cp "$SKYRIMDIR/$screenshot" "$SKYRIMSMB"
+    echo "Successfully copied screenshot $screenshot to destination folder."
 done
 
 popd > /dev/null
