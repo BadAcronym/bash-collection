@@ -210,12 +210,14 @@ function config_push()
     cp "$HOME/repository/todo.typ" "$HOME/smb/todo.typ"
     echo -e "\n\033[1;35mbacked up todo.typ\033[0m"
 
-    echo -e "\n\033[1;35mbacking up writings...\033[0m"
+    echo -e "\n\033[1;35mbacking up spreadsheets...\033[0m"
+    cp "$HOME/finance/" "$HOME/smb/" -r 2> /dev/null
+    move_to_smb_recurse "$HOME/finance/"
 
+    echo -e "\n\033[1;35mbacking up writings...\033[0m"
     # TODO: back up only .typ / .txt / .md files, show each individually in output!
     # instead of:
     cp "$HOME/writing/" "$HOME/smb/" -r 2> /dev/null
-
     move_to_smb_recurse "$HOME/writing/"
 
     echo -e "\n\033[1;35mpushing config files.\033[0m"
