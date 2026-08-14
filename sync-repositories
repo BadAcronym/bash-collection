@@ -21,6 +21,11 @@ function update()
 
     git fetch
     git pull
+
+    if [[ $? != 0 ]]
+    then
+        echo -e "^^^^^^ $1\n"
+    fi
 }
 
 function update_all()
