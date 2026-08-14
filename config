@@ -208,7 +208,13 @@ function move_to_smb_recurse()
 function config_push()
 {
     cp "$HOME/repository/todo.typ" "$HOME/smb/todo.typ"
-    echo -e "\n\033[1;35mbacked up todo.typ\033[0m"
+    echo -e "\n\033[1;35mbacked up todo.typ.\033[0m"
+
+    cp "$HOME/.gitflussrepos" "$HOME/smb/.gitflussrepos"
+    echo -e "\n\033[1;35mbacked up .gitflussrepos.\033[0m"
+
+    cp "$HOME/.gitflussauthors" "$HOME/smb/.gitflussauthors"
+    echo -e "\n\033[1;35mbacked up .gitflussauthors.\033[0m"
 
     echo -e "\n\033[1;35mbacking up spreadsheets...\033[0m"
     cp "$HOME/finance/" "$HOME/smb/" -r 2> /dev/null
