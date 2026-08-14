@@ -31,10 +31,10 @@ puddle/run                      \
 gitfluss/src/                   \
 gitfluss/include/               \
 bash-collection/                \
-PWSH-Collection/                \
-CPong/src/                      \
-CPong/include/                  \
-Snek/src/                       \
-Snek/include/                   \
+pwsh-collection/                \
+cpong/src/                      \
+cpong/include/                  \
+snek/src/                       \
+snek/include/                   \
 
 popd > /dev/null
