@@ -1,0 +1,24 @@
+#!/bin/bash
+
+function convert_image()
+{
+    magick "$1" "$1.jpg"
+    if [[ $? != 0 ]]
+    then
+        echo -e "\033[31;1mERROR: failed converting $1 to $1.jpg!\033[0m"
+        exit 5;
+    fi
+
+    echo -e "\033[32;1mSUCCESS: converted $1 to $1.jpg!\033[0m"
+    rm $1
+}
+
+for file in *
+do
+    if [[ ! -f $file ]] || [[ $file =~ \.(png|jpg|jpeg|bmp)$ ]]
+    then
+        continue;
+    fi
+
+    convert_image $file
+done
