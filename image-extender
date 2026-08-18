@@ -1,9 +1,19 @@
 #!/bin/bash
 
+files=()
+PIDs=()
+
 function convert_image()
 {
+    if [[ -f "$1.jpg" ]]
+    then
+        echo -e "\033[33;1mWARNING: $1.jpg already exists, convert manually "
+        echo -e "to overwrite.\033[0m"
+        return;
+    fi
+
     magick "$1" "$1.jpg"
-    if [[ $? != 0 ]]
+    if [[ $? != 0 ]] || [[ ! -f "$1.jpg" ]]
     then
         echo -e "\033[31;1mERROR: failed converting $1 to $1.jpg!\033[0m"
         exit 5;
@@ -20,5 +30,17 @@ do
         continue;
     fi
 
+    files+="$file "
+done
+
+for file in ${files[@]}
+do
     convert_image $file
+    PIDs[$i]=$!
+    i=$((i + 1))
+done
+
+for pid in ${PIDs[*]}
+do
+    wait $pid
 done
