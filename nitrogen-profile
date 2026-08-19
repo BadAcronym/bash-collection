@@ -138,6 +138,7 @@ else
 
     cp $theme bg-saved.cfg
     echo "${theme##profile-}" > $HOME/nitrogentheme
+    echo "set theme: ${theme##profile-}"
 fi
 
 nitrogen --restore 2> /dev/null &
