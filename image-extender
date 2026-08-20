@@ -25,7 +25,7 @@ function convert_image()
 
 for file in *
 do
-    if [[ ! -f $file ]] || [[ $file =~ \.(png|jpg|jpeg|bmp)$ ]]
+    if [[ ! -f "$file" ]] || [[ "$file" =~ \.(png|jpg|jpeg|bmp|mp4|mov|mkv)$ ]]
     then
         continue;
     fi
@@ -35,7 +35,7 @@ done
 
 for file in ${files[@]}
 do
-    convert_image $file
+    convert_image "$file"
     PIDs[$i]=$!
     i=$((i + 1))
 done
