@@ -25,7 +25,7 @@ function convert_image()
 
 for file in *
 do
-    if [[ ! -f "$file" ]] || [[ "$file" =~ \.(png|jpg|jpeg|bmp|mp4|mov|mkv|gif)$ ]]
+    if [[ ! -f "$file" ]] || [[ "$file" =~ \.[a-z]{2,5}$ ]]
     then
         continue;
     fi
