@@ -61,6 +61,11 @@ then
         fi
     done
 
+    if [[ $mod3 > 0 ]]
+    then
+        printf "\n"
+    fi
+
     printf "\nTotal theme count: %u.\n" $count
     exit 0;
 
