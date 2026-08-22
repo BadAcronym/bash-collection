@@ -44,7 +44,7 @@ then
                 fi
             done
 
-            printf "[%02u] %-20s" "$max_index" "$theme"
+            printf "[%02u] %-18s" "$max_index" "$theme"
 
             if (( $mod3 == 2 ))
             then
