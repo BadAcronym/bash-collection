@@ -1,0 +1,27 @@
+#!/bin/bash
+
+PS4="+ $EPOCHREALTIME\011 "
+
+if [[ $1 = "" ]]
+then
+    printf "no script to time.\n"
+    printf "exiting...\n"
+    exit 0;
+fi
+
+if [[ $2 = "" ]]
+then
+    printf "no output file specified, writing to './tmp-time-script-out'.\n"
+    exec 5> ./tmp-time-script-out
+    BASH_XTRACEFD="5"
+else
+    exec 5>$2
+    BASH_XTRACEFD="5"
+fi
+
+set -x
+echo ""
+$1
+set +x
+
+exec 2>&2
