@@ -32,7 +32,7 @@ then
             last_theme=$theme
             max_index=0
 
-            for name_2 in $list
+            for name_2 in profile-$theme*
             do
                 if [[ $name_2 =~ ^profile-${theme}-([0-9]+)$ ]]
                 then
