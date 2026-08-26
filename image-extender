@@ -15,7 +15,7 @@ function convert_image()
     magick "$1" "$1.jpg"
     if [[ $? != 0 ]] || [[ ! -f "$1.jpg" ]]
     then
-        echo -e "\033[31;1mERROR: failed converting $1 to $1.jpg!\033[0m"
+        echo -e "\033[31;1m\nERROR: failed converting $1 to $1.jpg!\033[0m"
         exit 5;
     fi
 
@@ -23,24 +23,56 @@ function convert_image()
     rm $1
 }
 
-for file in *
-do
-    if [[ ! -f "$file" ]] || [[ "$file" =~ \.[a-z0-9]{2,5}$ ]]
-    then
-        continue;
-    fi
+function add_all_files
+{
+    for file in *
+    do
+        if [[ ! -f "$file" ]] || [[ "$file" =~ \.[a-zA-Z0-9~]{2,5}$ ]]
+        then
+            continue;
+        fi
 
-    files+="$file "
-done
+        files+="$file "
+    done
+}
 
-for file in ${files[@]}
-do
-    convert_image "$file"
-    PIDs[$i]=$!
-    i=$((i + 1))
-done
+function convert_all()
+{
+    for file in ${files[@]}
+    do
+        convert_image "$file" &
+        PIDs[$i]=$!
+        i=$((i + 1))
+    done
 
-for pid in ${PIDs[*]}
-do
-    wait $pid
-done
+    for pid in ${PIDs[*]}
+    do
+        wait $pid
+    done
+    files=()
+}
+
+function recurse()
+{
+    for folder in *
+    do
+        if [[ ! -d "$folder" ]]
+        then
+            continue;
+        else
+            pushd "$folder"
+            add_all_files
+            convert_all
+            recurse
+            popd
+        fi
+    done
+}
+
+if [[ $1 = "-r" ]]
+then
+    recurse
+fi
+
+add_all_files
+convert_all
