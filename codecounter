@@ -53,6 +53,7 @@ puddle/src/                             \
 puddle/include/                         \
 puddle/clean                            \
 puddle/clean.ps1                        \
+puddle/debug                            \
 puddle/run                              \
 puddle/run.ps1                          \
 pwsh-collection                         \
