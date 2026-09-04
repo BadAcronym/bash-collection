@@ -19,6 +19,8 @@ cpong/include/                          \
 cpong/clean.ps1                         \
 cpong/run.ps1                           \
 cpong/debug.ps1                         \
+datasurf/src/                           \
+datasurf/include/                       \
 flushback/src/                          \
 flushback/include/                      \
 gitfluss/src/                           \
