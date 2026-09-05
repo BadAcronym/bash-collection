@@ -21,6 +21,9 @@ cpong/run.ps1                           \
 cpong/debug.ps1                         \
 datasurf/src/                           \
 datasurf/include/                       \
+datasurf/clean                          \
+datasurf/debug                          \
+datasurf/run                            \
 flushback/src/                          \
 flushback/include/                      \
 gitfluss/src/                           \
@@ -35,6 +38,7 @@ imgsurf/src/                            \
 imgsurf/include/                        \
 imgsurf/clean                           \
 imgsurf/clean.ps1                       \
+imgsurf/debug                           \
 imgsurf/run                             \
 imgsurf/run.ps1                         \
 islescape/src/                          \
