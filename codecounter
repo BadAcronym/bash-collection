@@ -22,8 +22,10 @@ cpong/debug.ps1                         \
 datasurf/src/                           \
 datasurf/include/                       \
 datasurf/clean                          \
+datasurf/clean.ps1                      \
 datasurf/debug                          \
 datasurf/run                            \
+datasurf/run.ps1                        \
 flushback/src/                          \
 flushback/include/                      \
 gitfluss/src/                           \
