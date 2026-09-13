@@ -84,6 +84,7 @@ river2D_mapedit/run                     \
 river2D_mapedit/run.ps1                 \
 river3D/src/                            \
 river3D/include/                        \
+river3D/clean                           \
 river3D/clean.ps1                       \
 river3D/debug.ps1                       \
 river3D/run                             \
