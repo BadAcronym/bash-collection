@@ -60,11 +60,11 @@ function recurse()
         then
             continue;
         else
-            pushd "$folder"
+            pushd "$folder" > /dev/null
             add_all_files
             convert_all
             recurse
-            popd
+            popd > /dev/null
         fi
     done
 }
