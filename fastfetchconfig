@@ -148,6 +148,7 @@ else
     then
         cp $theme "config.jsonc"
         echo ${theme%%.jsonc} > $HOME/fastfetchtheme
+        echo "set theme: ${theme%%.jsonc}"
     fi
 
     fastfetch
