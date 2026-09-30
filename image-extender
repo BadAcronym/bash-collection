@@ -7,7 +7,7 @@ function convert_image()
 {
     if [[ -f "$1.jpg" ]]
     then
-        echo -e "\033[33;1mWARNING: $1.jpg already exists, convert manually "
+        echo -e "\033[33;1mWARNING: $PWD/$1.jpg already exists, convert manually "
         echo -e "to overwrite.\033[0m"
         return;
     fi
@@ -15,11 +15,11 @@ function convert_image()
     magick "$1" "$1.jpg"
     if [[ $? != 0 ]] || [[ ! -f "$1.jpg" ]]
     then
-        echo -e "\033[31;1m\nERROR: failed converting $1 to $1.jpg!\033[0m"
+        echo -e "\033[31;1m\nERROR: failed converting $PWD/$1 to $1.jpg!\033[0m"
         exit 5;
     fi
 
-    echo -e "\033[32;1mSUCCESS: converted $1 to $1.jpg!\033[0m"
+    echo -e "\033[32;1mSUCCESS: converted $PWD/$1 to $1.jpg!\033[0m"
     rm $1
 }
 
