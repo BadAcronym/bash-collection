@@ -19,5 +19,8 @@ then
         --output HDMI-A-0      --off
 else
     echo -e "\033[31;1mERROR: unknown displaymode '$1'.\033[0m"
+    exit 1;
 fi
 fi
+
+nitrogen --restore &
