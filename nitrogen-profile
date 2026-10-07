@@ -108,6 +108,20 @@ then
     echo -e "successfully deleted configuration 'profile-$2' from:"
     echo -e "$HOME/.config/nitrogen/ \nand\n$SAVEDIR"
 
+elif [[ $1 = "edit" ]]
+then
+    if [[ $2 = "" ]]
+    then
+        $EDITOR ~/.config/nitrogen/bg-saved.cfg
+        exit 0;
+    elif [[ ! -f "profile-$2" ]] && [[ ! -f "$SAVEDIR/profile-$2" ]]
+    then
+        echo -e "\033[31;1;1mERROR: a configuration of name '$2' does not exist.\033[0m\n"
+        exit 1;
+    fi
+
+    $EDITOR "profile-$2"
+
 elif [[ $1 = "what" ]] || [[ $1 = "which" ]]
 then
     if [[ -f $HOME/nitrogentheme ]]
