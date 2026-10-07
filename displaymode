@@ -23,4 +23,5 @@ else
 fi
 fi
 
+echo $1 > ~/.displaymode
 nitrogen --restore 2>/dev/null &
