@@ -49,6 +49,7 @@ function add_files()
 }
 
 add_files "$HOME/writing/"
+add_files "$HOME/repository/islescape/assets/dialogue.typ"
 
 pages=$(bc <<< "scale=2; $wordcount / 250")
 pages=$(bc <<< "scale=1; ($pages + 0.05) / 1")
