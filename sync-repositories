@@ -1,7 +1,6 @@
 #!/bin/bash
 
 folders=()
-PIDs=()
 
 function update()
 {
@@ -18,6 +17,25 @@ function update()
         echo "Already up to date."
         return;
     fi
+
+    PIDs=()
+    i=0
+    for submodule in ./vendor/*
+    do
+        if [[ ! -d $submodule ]]
+        then
+            continue;
+        fi
+
+        update $submodule &
+        PIDs[$i]=$!
+        i=$((i + 1))
+    done
+
+    for pid in ${PIDs[*]}
+    do
+        wait $pid
+    done
 
     git fetch
 
@@ -37,7 +55,9 @@ function update()
 
 function update_all()
 {
+    PIDs=()
     i=0
+
     for folder in ${folders[@]}
     do
         update $folder &
@@ -70,36 +90,40 @@ folders+=("$HOME/repository/river2D_mapedit/")
 folders+=("$HOME/repository/river3D/")
 folders+=("$HOME/repository/vertstream/")
 
-folders+=("$HOME/repository/dropfetch/vendor/puddle/")
-folders+=("$HOME/repository/gitfluss/vendor/datasurf/")
-folders+=("$HOME/repository/imgsurf/vendor/datasurf/")
-folders+=("$HOME/repository/blazeterm/vendor/fontflow/")
-folders+=("$HOME/repository/datasurf/vendor/puddle/")
-folders+=("$HOME/repository/river2D/vendor/imgsurf/")
-folders+=("$HOME/repository/river2D/vendor/fontflow/")
-folders+=("$HOME/repository/river3D/vendor/imgsurf/")
-folders+=("$HOME/repository/river3D/vendor/vertstream/")
-folders+=("$HOME/repository/marino/vendor/river2D/")
-folders+=("$HOME/repository/marino/vendor/fontflow/")
-folders+=("$HOME/repository/islescape/vendor/river2D/")
-folders+=("$HOME/repository/river2D_mapedit/vendor/river2D/")
-
-folders+=("$HOME/repository/river2D/vendor/imgsurf/vendor/datasurf/")
-folders+=("$HOME/repository/river3D/vendor/imgsurf/vendor/datasurf/")
-folders+=("$HOME/repository/marino/vendor/river2D/vendor/imgsurf/")
-folders+=("$HOME/repository/islescape/vendor/river2D/vendor/imgsurf/")
-folders+=("$HOME/repository/gitfluss/vendor/datasurf/vendor/puddle")
-folders+=("$HOME/repository/imgsurf/vendor/datasurf/vendor/puddle/")
-folders+=("$HOME/repository/river2D_mapedit/vendor/river2D/vendor/imgsurf/")
-
-folders+=("$HOME/repository/river2D/vendor/imgsurf/vendor/datasurf/vendor/puddle/")
-folders+=("$HOME/repository/river3D/vendor/imgsurf/vendor/datasurf/vendor/puddle/")
-folders+=("$HOME/repository/marino/vendor/river2D/vendor/imgsurf/vendor/datasurf/")
-folders+=("$HOME/repository/islescape/vendor/river2D/vendor/imgsurf/vendor/datasurf/")
-folders+=("$HOME/repository/river2D_mapedit/vendor/river2D/vendor/imgsurf/vendor/datasurf/")
-
-folders+=("$HOME/repository/marino/vendor/river2D/vendor/imgsurf/vendor/datasurf/vendor/puddle/")
-folders+=("$HOME/repository/river2D_mapedit/vendor/river2D/vendor/imgsurf/vendor/datasurf/vendor/puddle/")
-folders+=("$HOME/repository/islescape/vendor/river2D/vendor/imgsurf/vendor/datasurf/vendor/puddle/")
+# folders+=("$HOME/repository/fontflow/vendor/puddle/")
+# folders+=("$HOME/repository/dropfetch/vendor/puddle/")
+# folders+=("$HOME/repository/gitfluss/vendor/datasurf/")
+# folders+=("$HOME/repository/imgsurf/vendor/datasurf/")
+# folders+=("$HOME/repository/blazeterm/vendor/fontflow/")
+# folders+=("$HOME/repository/datasurf/vendor/puddle/")
+# folders+=("$HOME/repository/river2D/vendor/imgsurf/")
+# folders+=("$HOME/repository/river2D/vendor/fontflow/")
+# folders+=("$HOME/repository/river3D/vendor/imgsurf/")
+# folders+=("$HOME/repository/river3D/vendor/vertstream/")
+# folders+=("$HOME/repository/marino/vendor/river2D/")
+# folders+=("$HOME/repository/marino/vendor/fontflow/")
+# folders+=("$HOME/repository/islescape/vendor/river2D/")
+# folders+=("$HOME/repository/river2D_mapedit/vendor/river2D/")
+#
+# folders+=("$HOME/repository/blazeterm/vendor/fontflow/vendor/puddle")
+# folders+=("$HOME/repository/river2D/vendor/fontflow/vendor/puddle")
+# folders+=("$HOME/repository/marino/vendor/fontflow/vendor/puddle/")
+# folders+=("$HOME/repository/river2D/vendor/imgsurf/vendor/datasurf/")
+# folders+=("$HOME/repository/river3D/vendor/imgsurf/vendor/datasurf/")
+# folders+=("$HOME/repository/marino/vendor/river2D/vendor/imgsurf/")
+# folders+=("$HOME/repository/islescape/vendor/river2D/vendor/imgsurf/")
+# folders+=("$HOME/repository/gitfluss/vendor/datasurf/vendor/puddle")
+# folders+=("$HOME/repository/imgsurf/vendor/datasurf/vendor/puddle/")
+# folders+=("$HOME/repository/river2D_mapedit/vendor/river2D/vendor/imgsurf/")
+#
+# folders+=("$HOME/repository/river2D/vendor/imgsurf/vendor/datasurf/vendor/puddle/")
+# folders+=("$HOME/repository/river3D/vendor/imgsurf/vendor/datasurf/vendor/puddle/")
+# folders+=("$HOME/repository/marino/vendor/river2D/vendor/imgsurf/vendor/datasurf/")
+# folders+=("$HOME/repository/islescape/vendor/river2D/vendor/imgsurf/vendor/datasurf/")
+# folders+=("$HOME/repository/river2D_mapedit/vendor/river2D/vendor/imgsurf/vendor/datasurf/")
+#
+# folders+=("$HOME/repository/marino/vendor/river2D/vendor/imgsurf/vendor/datasurf/vendor/puddle/")
+# folders+=("$HOME/repository/river2D_mapedit/vendor/river2D/vendor/imgsurf/vendor/datasurf/vendor/puddle/")
+# folders+=("$HOME/repository/islescape/vendor/river2D/vendor/imgsurf/vendor/datasurf/vendor/puddle/")
 
 update_all
