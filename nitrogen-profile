@@ -153,9 +153,22 @@ else
 
     elif [[ ! -f $theme ]]
     then
-        echo -e "\033[31;1;1mERROR: a configuration of name '$1' does not exist.\033[0m\n"
-        popd > /dev/null
-        exit 1;
+        for curr in $theme*
+        do
+            if [[ ! -f $curr ]]
+            then
+                continue;
+            fi
+
+            theme=$curr
+        done
+
+        if [[ ! -f $theme ]]
+        then
+            echo -e "\033[31;1;1mERROR: a configuration of name '$1' or '$1*' does not exist.\033[0m\n"
+            popd > /dev/null
+            exit 1;
+        fi
     fi
 
     cp $theme bg-saved.cfg
