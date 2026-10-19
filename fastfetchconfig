@@ -137,8 +137,32 @@ else
 
     elif [[ $1 != "" ]] && [[ ! -f "$1.jsonc" ]]
     then
-        echo -e "\033[31;1;1mERROR: a configuration of name '$1' does not exist.\033[0m\n"
-        exit 1;
+        for curr in $1*
+        do
+            if [[ ! -f $curr ]]
+            then
+                continue;
+            fi
+
+            theme=$curr
+        done
+
+        for curr in $1*.jsonc
+        do
+            if [[ ! -f $curr ]]
+            then
+                continue;
+            fi
+
+            theme=$curr
+        done
+
+        if [[ ! -f $theme ]]
+        then
+            echo -e "\033[31;1;1mERROR: a configuration of name '$1' or '$1*' does not exist.\033[0m\n"
+            popd > /dev/null
+            exit 1;
+        fi
 
     else
         theme="$1.jsonc"
