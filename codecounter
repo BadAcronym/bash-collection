@@ -6,7 +6,6 @@ pushd $HOME/repository/ > /dev/null
 # blazeterm scripts
 # flushback scripts
 # dropfetch
-# fontflow
 # path to misc scripts
 
 cloc                                    \
@@ -28,6 +27,10 @@ datasurf/run                            \
 datasurf/run.ps1                        \
 flushback/src/                          \
 flushback/include/                      \
+fontflow/src/                           \
+fontflow/include/                       \
+fontflow/clean                          \
+fontflow/run                            \
 gitfluss/src/                           \
 gitfluss/include/                       \
 gitfluss/clean                          \
