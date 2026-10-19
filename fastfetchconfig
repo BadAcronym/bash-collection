@@ -137,25 +137,7 @@ else
 
     elif [[ $1 != "" ]] && [[ ! -f "$1.jsonc" ]]
     then
-        for curr in $1*
-        do
-            if [[ ! -f $curr ]]
-            then
-                continue;
-            fi
-
-            theme=$curr
-        done
-
-        for curr in $1*.jsonc
-        do
-            if [[ ! -f $curr ]]
-            then
-                continue;
-            fi
-
-            theme=$curr
-        done
+        theme=$(ls $1* -I config.jsonc | shuf -n 1)
 
         if [[ ! -f $theme ]]
         then
