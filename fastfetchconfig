@@ -137,7 +137,7 @@ else
 
     elif [[ $1 != "" ]] && [[ ! -f "$1.jsonc" ]]
     then
-        theme=$(ls $1* -I config.jsonc | shuf -n 1)
+        theme=$(ls $1* -I config.jsonc 2> /dev/null | shuf -n 1)
 
         if [[ ! -f $theme ]]
         then

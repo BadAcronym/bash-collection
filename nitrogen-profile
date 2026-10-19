@@ -153,7 +153,7 @@ else
 
     elif [[ ! -f $theme ]]
     then
-        theme=$(ls $theme* -I bg-saved.cfg -I nitrogen.cfg | shuf -n 1)
+        theme=$(ls $theme* -I bg-saved.cfg -I nitrogen.cfg 2> /dev/null | shuf -n 1)
 
         if [[ ! -f $theme ]]
         then
