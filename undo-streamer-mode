@@ -63,8 +63,15 @@ function unset_streamer_mode()
 
 LOCKDIR=/tmp/nitrogen_lock_directory/
 
+if ps aux | grep obs-studio | grep -v grep > /dev/null
+then
+    echo -e "\033[31;1mERROR: obs-studio is running, cannot unset streamer mode.\033[0m"
+    exit 1;
+fi
+
 if mkdir -- "$LOCKDIR"
 then
+
     unset_streamer_mode
 
     if rmdir -- "$LOCKDIR"
