@@ -260,20 +260,10 @@ function config_push()
     popd > /dev/null
     popd > /dev/null
 
-    mkdir $HOME/smb/Backups/fastfetch/ 2> /dev/null
+    mkdir $HOME/smb/Backups/fastfetch/         2> /dev/null
+    mkdir $HOME/smb/Backups/fastfetch/backup/  2> /dev/null
+    mkdir $HOME/smb/Backups/fastfetch/backup_/ 2> /dev/null
     echo -e "\n\033[1;35mbacking up fastfetch configs...\033[0m"
-
-    pushd $HOME/.config/fastfetch/ > /dev/null
-    for config in *.jsonc
-    do
-        if [[ ! -f $config ]] || [[ $config = "config.jsonc" ]]
-        then
-            continue;
-        fi
-
-        cp $config $HOME/smb/Backups/fastfetch/$(basename $config)
-        echo -e "backed up $config."
-    done
 
     pushd $HOME/.config/fastfetch_backup/ > /dev/null
     for config in *.jsonc
@@ -283,7 +273,7 @@ function config_push()
             continue;
         fi
 
-        cp $config $HOME/smb/Backups/fastfetch/$(basename $config)
+        cp $config $HOME/smb/Backups/fastfetch/backup/$(basename $config)
         echo -e "backed up $config."
     done
 
@@ -295,11 +285,10 @@ function config_push()
             continue;
         fi
 
-        cp $config $HOME/smb/Backups/fastfetch/$(basename $config)
+        cp $config $HOME/smb/Backups/fastfetch/backup_/$(basename $config)
         echo -e "backed up $config."
     done
 
-    popd > /dev/null
     popd > /dev/null
     popd > /dev/null
 
