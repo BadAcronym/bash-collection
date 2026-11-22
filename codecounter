@@ -39,6 +39,7 @@ gitfluss/debug.ps1                      \
 gitfluss/profile                        \
 gitfluss/run                            \
 gitfluss/run.ps1                        \
+gitfluss/time                           \
 imgsurf/src/                            \
 imgsurf/include/                        \
 imgsurf/clean                           \
