@@ -99,5 +99,9 @@ snek/include/                           \
 snek/clean.ps1                          \
 snek/disassemble.ps1                    \
 snek/run.ps1                            \
+vertstream/src/                         \
+vertstream/include/                     \
+vertstream/run                          \
+vertstream/clean                        \
 
 popd > /dev/null
