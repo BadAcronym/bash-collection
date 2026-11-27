@@ -101,8 +101,9 @@ snek/disassemble.ps1                    \
 snek/run.ps1                            \
 vertstream/src/                         \
 vertstream/include/                     \
-vertstream/debug                        \
-vertstream/run                          \
 vertstream/clean                        \
+vertstream/debug                        \
+vertstream/profile                      \
+vertstream/run                          \
 
 popd > /dev/null
